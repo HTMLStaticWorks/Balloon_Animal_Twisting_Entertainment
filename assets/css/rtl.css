@@ -1,0 +1,31 @@
+/* RTL Overrides */
+[dir="rtl"] body {
+    text-align: right;
+}
+
+[dir="rtl"] h1, [dir="rtl"] h2, [dir="rtl"] h3, [dir="rtl"] h4, [dir="rtl"] h5, [dir="rtl"] h6, [dir="rtl"] p {
+    text-align: center; /* Heading and desc remain centered as per global rule */
+}
+
+[dir="rtl"] .footer-brand p, [dir="rtl"] .footer-newsletter p, [dir="rtl"] .footer-col h4 {
+    text-align: right;
+}
+
+[dir="rtl"] .drawer {
+    right: auto;
+    left: -100%;
+}
+
+[dir="rtl"] .drawer.active {
+    left: 0;
+}
+
+[dir="rtl"] .nav-cta {
+    margin-right: var(--s-16);
+    margin-left: 0;
+}
+
+[dir="rtl"] .footer-links a:hover {
+    padding-left: 0;
+    padding-right: 4px;
+}

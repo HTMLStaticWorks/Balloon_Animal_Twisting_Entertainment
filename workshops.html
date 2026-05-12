@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Training Workshops — TwistCraft Academy</title>
+    
+    <!-- Icons -->
+    <script src="https://unpkg.com/@phosphor-icons/web@2.1.1"></script>
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/rtl.css">
+    
+    <style>
+        .workshops-hero {
+            padding: var(--s-128) 0 var(--s-64);
+            background: var(--color-surface);
+            text-align: center;
+        }
+        .countdown-banner {
+            background: var(--color-text);
+            color: var(--color-bg);
+            padding: var(--s-48) 0;
+            margin-bottom: var(--s-96);
+            border-radius: var(--radius);
+        }
+        .countdown-grid {
+            display: flex;
+            justify-content: center;
+            gap: var(--s-48);
+            margin-top: var(--s-32);
+        }
+        .countdown-item span:first-child { font-size: 3rem; font-weight: 900; display: block; color: var(--color-primary); }
+        .countdown-item span:last-child { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 2px; }
+
+        .workshop-card {
+            display: grid;
+            grid-template-columns: 1fr 2fr 1fr;
+            gap: var(--s-32);
+            align-items: center;
+            background: var(--color-surface);
+            padding: var(--s-32);
+            border-radius: var(--radius);
+            margin-bottom: var(--s-24);
+            transition: var(--transition);
+        }
+        .workshop-card:hover { transform: scale(1.02); box-shadow: var(--shadow); }
+        .workshop-date { text-align: center; }
+        .workshop-date span:first-child { font-size: 2rem; font-weight: 900; display: block; line-height: 1; }
+        .workshop-date span:last-child { font-size: 1rem; color: var(--color-text-muted); }
+        
+        .badge { padding: 6px 12px; border-radius: 50px; font-size: 0.75rem; font-weight: 700; margin-bottom: 10px; display: inline-block; }
+        .badge-basic { background: var(--color-accent); color: #FFF; }
+        .badge-intermediate { background: var(--color-secondary); color: #111; }
+        .badge-advanced { background: var(--color-primary); color: #FFF; }
+
+        @media (max-width: 768px) {
+            .workshop-card { grid-template-columns: 1fr; text-align: center; }
+            .workshop-date { margin-bottom: 15px; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar scrolled">
+        <div class="container nav-container">
+            <a href="index.html" class="logo"><span class="logo-icon"></span>TwistCraft</a>
+            <div class="nav-links">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="gallery.html" class="nav-link">Gallery</a>
+                <a href="services.html" class="nav-link">Services</a>
+                <a href="packages.html" class="nav-link">Packages</a>
+                <a href="workshops.html" class="nav-link active">Workshops</a>
+                <a href="contact.html" class="nav-link">Contact</a>
+            </div>
+            <div class="nav-actions">
+                <button class="icon-btn" id="rtl-toggle"><i class="ph ph-arrows-left-right"></i></button>
+                <button class="icon-btn" id="theme-toggle"><i class="ph ph-moon"></i></button>
+                <a href="booking.html" class="nav-cta">Book Now</a>
+                <button class="icon-btn hamburger" id="hamburger"><i class="ph ph-list"></i></button>
+            </div>
+        </div>
+    </nav>
+
+    <header class="workshops-hero">
+        <div class="container">
+            <span class="section-subtitle">Learn The Craft</span>
+            <h1 class="section-title">Twisting Academy</h1>
+            <p class="section-desc">Join our professional workshops and master the art of balloon twisting. From beginners to advanced artists.</p>
+        </div>
+    </header>
+
+    <section class="container">
+        <!-- Countdown -->
+        <div class="countdown-banner">
+            <h2 style="color: #FFF;">Next Masterclass Starts In:</h2>
+            <div class="countdown-grid" id="countdown">
+                <div class="countdown-item"><span id="days">00</span><span>Days</span></div>
+                <div class="countdown-item"><span id="hours">00</span><span>Hours</span></div>
+                <div class="countdown-item"><span id="mins">00</span><span>Mins</span></div>
+                <div class="countdown-item"><span id="secs">00</span><span>Secs</span></div>
+            </div>
+        </div>
+
+        <h2 style="margin-bottom: var(--s-48);">Upcoming Schedule</h2>
+        
+        <!-- Workshop 1 -->
+        <div class="workshop-card">
+            <div class="workshop-date">
+                <span>15</span>
+                <span>AUG</span>
+            </div>
+            <div class="workshop-info">
+                <span class="badge badge-basic">Beginner</span>
+                <h3>Introduction to Twisting</h3>
+                <p>Learn the basic twists, animal forms, and safety essentials. Perfect for parents and hobbyists.</p>
+                <div style="margin-top: 10px; font-size: 0.9rem; color: var(--color-text-muted);">
+                    <i class="ph ph-clock"></i> 10:00 AM - 2:00 PM | <i class="ph ph-users"></i> 12 Spots Left
+                </div>
+            </div>
+            <div style="text-align: right;">
+                <div style="font-size: 1.5rem; font-weight: 800; margin-bottom: 10px;">$99</div>
+                <a href="booking.html" class="btn btn-primary">Register</a>
+            </div>
+        </div>
+
+        <!-- Workshop 2 -->
+        <div class="workshop-card">
+            <div class="workshop-date">
+                <span>22</span>
+                <span>AUG</span>
+            </div>
+            <div class="workshop-info">
+                <span class="badge badge-intermediate">Intermediate</span>
+                <h3>Character Design Mastery</h3>
+                <p>Expand your repertoire with complex character sculptures and detailed features.</p>
+                <div style="margin-top: 10px; font-size: 0.9rem; color: var(--color-text-muted);">
+                    <i class="ph ph-clock"></i> 11:00 AM - 4:00 PM | <i class="ph ph-users"></i> 5 Spots Left
+                </div>
+            </div>
+            <div style="text-align: right;">
+                <div style="font-size: 1.5rem; font-weight: 800; margin-bottom: 10px;">$149</div>
+                <a href="booking.html" class="btn btn-primary">Register</a>
+            </div>
+        </div>
+
+        <!-- Workshop 3 -->
+        <div class="workshop-card">
+            <div class="workshop-date">
+                <span>05</span>
+                <span>SEP</span>
+            </div>
+            <div class="workshop-info">
+                <span class="badge badge-advanced">Advanced</span>
+                <h3>Large-Scale Installations</h3>
+                <p>Learn the engineering and design behind massive balloon walls, arches, and life-size sculptures.</p>
+                <div style="margin-top: 10px; font-size: 0.9rem; color: var(--color-text-muted);">
+                    <i class="ph ph-clock"></i> 9:00 AM - 5:00 PM | <i class="ph ph-users"></i> 8 Spots Left
+                </div>
+            </div>
+            <div style="text-align: right;">
+                <div style="font-size: 1.5rem; font-weight: 800; margin-bottom: 10px;">$299</div>
+                <a href="booking.html" class="btn btn-primary">Register</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Photo Gallery Teaser -->
+    <section class="container">
+        <h2 style="margin-bottom: var(--s-48);">Academy Life</h2>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: var(--s-24);">
+            <img src="https://images.unsplash.com/photo-1574027411210-53096238b13d?q=80&w=800" alt="Workshop" style="border-radius: var(--radius);">
+            <img src="https://images.unsplash.com/photo-1525268771113-32d9e9021a97?q=80&w=800" alt="Workshop" style="border-radius: var(--radius);">
+            <img src="https://images.unsplash.com/photo-1530103862676-fa392231fa3c?q=80&w=800" alt="Workshop" style="border-radius: var(--radius);">
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container footer-grid">
+            <div class="footer-col footer-brand">
+                <a href="index.html" class="logo"><span class="logo-icon"></span>TwistCraft</a>
+                <p>Premium balloon artistry and entertainment.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="assets/js/main.js"></script>
+</body>
+</html>

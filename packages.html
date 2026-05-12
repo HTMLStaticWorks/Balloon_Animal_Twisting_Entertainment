@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event Packages — TwistCraft Entertainment</title>
+    
+    <!-- Icons -->
+    <script src="https://unpkg.com/@phosphor-icons/web@2.1.1"></script>
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/rtl.css">
+    
+    <style>
+        .packages-hero {
+            padding: var(--s-128) 0 var(--s-64);
+            background: var(--color-surface);
+            text-align: center;
+        }
+        .package-tier {
+            position: relative;
+            overflow: hidden;
+        }
+        .recommended-badge {
+            position: absolute;
+            top: 20px;
+            right: -30px;
+            background: var(--color-primary);
+            color: #FFF;
+            padding: 5px 40px;
+            transform: rotate(45deg);
+            font-size: 0.8rem;
+            font-weight: 800;
+        }
+        .price-tag {
+            font-size: 2.5rem;
+            font-weight: 900;
+            color: var(--color-text);
+            margin: var(--s-24) 0;
+        }
+        .package-list {
+            text-align: left;
+            margin-bottom: var(--s-32);
+            width: 100%;
+        }
+        .package-list li {
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .package-list li i { color: var(--color-accent); }
+
+        /* Add-ons Section */
+        .addons-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: var(--s-24);
+            margin-top: var(--s-48);
+        }
+        .addon-card {
+            background: var(--color-surface);
+            border-radius: var(--radius);
+            padding: var(--s-24);
+            cursor: pointer;
+            transition: var(--transition);
+            border: 2px solid transparent;
+            text-align: center;
+        }
+        .addon-card:hover { transform: translateY(-5px); }
+        .addon-checkbox { display: none; }
+        .addon-checkbox:checked + .addon-card {
+            border-color: var(--color-primary);
+            background: var(--color-bg);
+        }
+        .quote-panel {
+            position: sticky;
+            bottom: 32px;
+            background: var(--color-text);
+            color: var(--color-bg);
+            padding: var(--s-24) var(--s-48);
+            border-radius: 100px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: var(--s-64);
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+            z-index: 100;
+        }
+
+        /* FAQ Accordion */
+        .faq-container { max-width: 800px; margin: var(--s-96) auto 0; }
+        .faq-item {
+            background: var(--color-surface);
+            border-radius: var(--radius);
+            margin-bottom: var(--s-16);
+            overflow: hidden;
+        }
+        .faq-question {
+            padding: var(--s-24);
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 700;
+        }
+        .faq-answer {
+            padding: 0 var(--s-24) var(--s-24);
+            color: var(--color-text-muted);
+            display: none;
+        }
+        .faq-item.active .faq-answer { display: block; }
+        .faq-item.active .ph-caret-down { transform: rotate(180deg); }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar scrolled">
+        <div class="container nav-container">
+            <a href="index.html" class="logo"><span class="logo-icon"></span>TwistCraft</a>
+            <div class="nav-links">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="gallery.html" class="nav-link">Gallery</a>
+                <a href="services.html" class="nav-link">Services</a>
+                <a href="packages.html" class="nav-link active">Packages</a>
+                <a href="workshops.html" class="nav-link">Workshops</a>
+                <a href="contact.html" class="nav-link">Contact</a>
+            </div>
+            <div class="nav-actions">
+                <button class="icon-btn" id="rtl-toggle"><i class="ph ph-arrows-left-right"></i></button>
+                <button class="icon-btn" id="theme-toggle"><i class="ph ph-moon"></i></button>
+                <a href="booking.html" class="nav-cta">Book Now</a>
+                <button class="icon-btn hamburger" id="hamburger"><i class="ph ph-list"></i></button>
+            </div>
+        </div>
+    </nav>
+
+    <header class="packages-hero">
+        <div class="container">
+            <span class="section-subtitle">Event Tiers</span>
+            <h1 class="section-title">Investment Packages</h1>
+            <p class="section-desc">Clear, upfront pricing for every event size. Choose a tier that fits your celebration needs.</p>
+        </div>
+    </header>
+
+    <section class="container">
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: var(--s-32);">
+            <!-- Starter -->
+            <div class="card package-tier">
+                <i class="ph ph-sparkle" style="font-size: 2.5rem; color: var(--color-accent);"></i>
+                <h3 style="margin-top: var(--s-16);">Starter</h3>
+                <div class="price-tag">$250</div>
+                <ul class="package-list">
+                    <li><i class="ph ph-check"></i> 1.5 Hours Twisting</li>
+                    <li><i class="ph ph-check"></i> 1 Professional Artist</li>
+                    <li><i class="ph ph-check"></i> Up to 20 Guests</li>
+                    <li><i class="ph ph-check"></i> Standard Characters</li>
+                </ul>
+                <a href="booking.html" class="btn btn-outline" style="width: 100%;">Select Starter</a>
+            </div>
+            <!-- Celebration -->
+            <div class="card package-tier" style="border: 2px solid var(--color-primary);">
+                <div class="recommended-badge">POPULAR</div>
+                <i class="ph ph-confetti" style="font-size: 2.5rem; color: var(--color-primary);"></i>
+                <h3 style="margin-top: var(--s-16);">Celebration</h3>
+                <div class="price-tag">$450</div>
+                <ul class="package-list">
+                    <li><i class="ph ph-check"></i> 3 Hours Twisting</li>
+                    <li><i class="ph ph-check"></i> 1 Professional Artist</li>
+                    <li><i class="ph ph-check"></i> Up to 40 Guests</li>
+                    <li><i class="ph ph-check"></i> Detailed Sculptures</li>
+                    <li><i class="ph ph-check"></i> Custom Guest of Honor Crown</li>
+                </ul>
+                <a href="booking.html" class="btn btn-primary" style="width: 100%;">Select Celebration</a>
+            </div>
+            <!-- Grand -->
+            <div class="card package-tier">
+                <i class="ph ph-crown" style="font-size: 2.5rem; color: var(--color-secondary);"></i>
+                <h3 style="margin-top: var(--s-16);">Grand</h3>
+                <div class="price-tag">$800</div>
+                <ul class="package-list">
+                    <li><i class="ph ph-check"></i> 4 Hours Twisting</li>
+                    <li><i class="ph ph-check"></i> 2 Professional Artists</li>
+                    <li><i class="ph ph-check"></i> Up to 100 Guests</li>
+                    <li><i class="ph ph-check"></i> Masterwork Designs</li>
+                    <li><i class="ph ph-check"></i> Small Balloon Backdrop</li>
+                </ul>
+                <a href="booking.html" class="btn btn-outline" style="width: 100%;">Select Grand</a>
+            </div>
+            <!-- Bespoke -->
+            <div class="card package-tier">
+                <i class="ph ph-magic-wand" style="font-size: 2.5rem; color: var(--color-primary);"></i>
+                <h3 style="margin-top: var(--s-16);">Bespoke</h3>
+                <div class="price-tag">Custom</div>
+                <ul class="package-list">
+                    <li><i class="ph ph-check"></i> Flexible Duration</li>
+                    <li><i class="ph ph-check"></i> Multiple Artists</li>
+                    <li><i class="ph ph-check"></i> Unlimited Guests</li>
+                    <li><i class="ph ph-check"></i> Theme-Specific Designs</li>
+                    <li><i class="ph ph-check"></i> Large Installations</li>
+                </ul>
+                <a href="contact.html" class="btn btn-outline" style="width: 100%;">Get Quote</a>
+            </div>
+        </div>
+
+        <!-- Add-ons Section -->
+        <div style="margin-top: var(--s-128);">
+            <h2 style="margin-bottom: var(--s-16);">Party Add-ons</h2>
+            <p style="margin-bottom: var(--s-48);">Enhance your package with these magical extras.</p>
+            
+            <div class="addons-grid">
+                <label>
+                    <input type="checkbox" class="addon-checkbox" data-price="150">
+                    <div class="addon-card">
+                        <i class="ph ph-user-plus" style="font-size: 2rem; margin-bottom: 10px;"></i>
+                        <h4>Extra Artist</h4>
+                        <p>+$150/hr</p>
+                    </div>
+                </label>
+                <label>
+                    <input type="checkbox" class="addon-checkbox" data-price="75">
+                    <div class="addon-card">
+                        <i class="ph ph-hat-wizard" style="font-size: 2rem; margin-bottom: 10px;"></i>
+                        <h4>Hat Twisting Bar</h4>
+                        <p>+$75</p>
+                    </div>
+                </label>
+                <label>
+                    <input type="checkbox" class="addon-checkbox" data-price="200">
+                    <div class="addon-card">
+                        <i class="ph ph-camera" style="font-size: 2rem; margin-bottom: 10px;"></i>
+                        <h4>Photo Backdrop</h4>
+                        <p>+$200</p>
+                    </div>
+                </label>
+                <label>
+                    <input type="checkbox" class="addon-checkbox" data-price="100">
+                    <div class="addon-card">
+                        <i class="ph ph-gift" style="font-size: 2rem; margin-bottom: 10px;"></i>
+                        <h4>Themed Setup</h4>
+                        <p>+$100</p>
+                    </div>
+                </label>
+            </div>
+
+            <div class="quote-panel">
+                <span style="font-size: 1.2rem; font-weight: 700;">Your Add-on Total:</span>
+                <span style="font-size: 1.5rem; font-weight: 900; color: var(--color-primary);">$<span id="quote-total">0</span></span>
+            </div>
+        </div>
+
+        <!-- FAQ Section -->
+        <div class="faq-container">
+            <h2 style="margin-bottom: var(--s-48);">Frequently Asked Questions</h2>
+            <div class="faq-item">
+                <div class="faq-question">How far in advance should I book? <i class="ph ph-caret-down"></i></div>
+                <div class="faq-answer">We recommend booking at least 4-6 weeks in advance for weekend events. However, we sometimes have last-minute availability!</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">What kind of balloons do you use? <i class="ph ph-caret-down"></i></div>
+                <div class="faq-answer">We use 100% biodegradable, high-quality professional latex balloons that are sustainably sourced.</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">Do you travel outside of the city? <i class="ph ph-caret-down"></i></div>
+                <div class="faq-answer">Yes! We travel nationwide for large corporate events. Travel fees apply for locations more than 30 miles from our studio.</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">Is twisting suitable for outdoor events? <i class="ph ph-caret-down"></i></div>
+                <div class="faq-answer">Yes, but extreme heat or direct sunlight can cause balloons to pop. We recommend a shaded area for the best results.</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">What happens if an artist is sick? <i class="ph ph-caret-down"></i></div>
+                <div class="faq-answer">We have a team of backup artists and a strict protocol to ensure your event is never left without entertainment.</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer same as index -->
+    <footer class="footer">
+        <div class="container footer-grid">
+            <div class="footer-col footer-brand">
+                <a href="index.html" class="logo"><span class="logo-icon"></span>TwistCraft</a>
+                <p>Premium balloon artistry and entertainment.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="assets/js/main.js"></script>
+    <script src="assets/js/packages.js"></script>
+</body>
+</html>

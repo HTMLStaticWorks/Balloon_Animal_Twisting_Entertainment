@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register — TwistCraft</title>
+    
+    <!-- Icons -->
+    <script src="https://unpkg.com/@phosphor-icons/web@2.1.1"></script>
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="assets/css/style.css">
+    
+    <style>
+        body {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--color-bg);
+            padding: var(--s-24);
+            margin: 0;
+            overflow: hidden;
+        }
+        .auth-card {
+            width: 100%;
+            max-width: 450px;
+            background: var(--color-surface);
+            padding: var(--s-48);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            text-align: center;
+        }
+        .logo { margin-bottom: var(--s-32); justify-content: center; }
+        
+        .form-group { margin-bottom: var(--s-16); text-align: left; }
+        .form-group label { display: block; margin-bottom: 8px; font-weight: 700; font-size: 0.9rem; }
+        .form-group input { width: 100%; padding: 12px 20px; border-radius: var(--radius); border: 1px solid var(--color-border); background: var(--color-bg); color: var(--color-text); }
+        
+        .divider { display: flex; align-items: center; margin: var(--s-24) 0; color: var(--color-text-muted); font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px; }
+        .divider::before, .divider::after { content: ''; flex: 1; height: 1px; background: var(--color-border); }
+        .divider::before { margin-right: 15px; }
+        .divider::after { margin-left: 15px; }
+
+        .social-btn { display: flex; align-items: center; justify-content: center; gap: 10px; width: 100%; padding: 10px; border-radius: var(--radius); border: 1px solid var(--color-border); background: var(--color-bg); cursor: pointer; font-weight: 600; margin-bottom: 10px; transition: var(--transition); }
+        .social-btn:hover { background: var(--color-surface); }
+    </style>
+</head>
+<body data-theme="light">
+
+    <div class="auth-card">
+        <a href="index.html" class="logo">
+            <span class="logo-icon"></span>
+            TwistCraft
+        </a>
+        
+        <h2 style="margin-bottom: var(--s-24);">Join The Fun</h2>
+        
+        <form>
+            <div class="form-group">
+                <label>Full Name</label>
+                <input type="text" placeholder="John Doe" required>
+            </div>
+            <div class="form-group">
+                <label>Email Address</label>
+                <input type="email" placeholder="email@example.com" required>
+            </div>
+            <div class="form-group">
+                <label>Password</label>
+                <input type="password" placeholder="••••••••" required>
+            </div>
+            <div class="form-group">
+                <label>Confirm Password</label>
+                <input type="password" placeholder="••••••••" required>
+            </div>
+            <div class="form-group" style="display: flex; align-items: center; gap: 10px;">
+                <input type="checkbox" id="terms" style="width: auto;" required>
+                <label for="terms" style="margin-bottom: 0; font-size: 0.8rem;">I accept the Terms & Conditions</label>
+            </div>
+            <button type="submit" class="btn btn-primary" style="width: 100%;">Create Account</button>
+        </form>
+
+        <div class="divider">or</div>
+
+        <button class="social-btn"><i class="ph ph-google-logo" style="color: #DB4437;"></i> Google</button>
+
+        <p style="margin-top: var(--s-24); font-size: 0.9rem;">Already have an account? <a href="login.html" style="color: var(--color-primary); font-weight: 700;">Login</a></p>
+    </div>
+
+</body>
+</html>

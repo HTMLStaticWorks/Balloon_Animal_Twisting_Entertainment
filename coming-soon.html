@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TwistCraft — Something Magical Is Coming</title>
+    
+    <!-- Icons -->
+    <script src="https://unpkg.com/@phosphor-icons/web@2.1.1"></script>
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="assets/css/style.css">
+    
+    <style>
+        body {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--color-bg);
+            text-align: center;
+            overflow: hidden;
+            position: relative;
+        }
+        .coming-container { z-index: 10; max-width: 800px; padding: var(--s-32); }
+        .countdown-grid {
+            display: flex;
+            justify-content: center;
+            gap: var(--s-48);
+            margin: var(--s-64) 0;
+        }
+        .countdown-item span:first-child { font-size: 4rem; font-weight: 900; display: block; color: var(--color-primary); }
+        .countdown-item span:last-child { font-size: 1rem; text-transform: uppercase; letter-spacing: 3px; }
+
+        .notify-form { display: flex; gap: 10px; max-width: 500px; margin: 0 auto var(--s-48); }
+        .notify-form input { flex: 1; padding: 14px 20px; border-radius: var(--radius); border: 1px solid var(--color-border); background: var(--color-surface); color: var(--color-text); }
+
+        .balloon-bg { position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; }
+        .balloon { position: absolute; opacity: 0.3; animation: float 10s ease-in-out infinite; }
+    </style>
+</head>
+<body>
+
+    <div class="balloon-bg">
+        <svg class="balloon" style="top: 10%; left: 10%; width: 100px; fill: var(--color-primary);" viewBox="0 0 100 120"><path d="M50,0 C77.6,0 100,22.4 100,50 C100,77.6 77.6,100 50,100 C22.4,100 0,77.6 0,50 C0,22.4 22.4,0 50,0 Z M50,100 L50,120" /></svg>
+        <svg class="balloon" style="top: 60%; left: 80%; width: 80px; fill: var(--color-secondary); animation-delay: 2s;" viewBox="0 0 100 120"><path d="M50,0 C77.6,0 100,22.4 100,50 C100,77.6 77.6,100 50,100 C22.4,100 0,77.6 0,50 C0,22.4 22.4,0 50,0 Z M50,100 L50,120" /></svg>
+        <svg class="balloon" style="top: 30%; left: 85%; width: 120px; fill: var(--color-accent); animation-delay: 5s;" viewBox="0 0 100 120"><path d="M50,0 C77.6,0 100,22.4 100,50 C100,77.6 77.6,100 50,100 C22.4,100 0,77.6 0,50 C0,22.4 22.4,0 50,0 Z M50,100 L50,120" /></svg>
+    </div>
+
+    <div class="coming-container">
+        <div class="logo" style="justify-content: center; margin-bottom: var(--s-32);">
+            <span class="logo-icon"></span>
+            TwistCraft
+        </div>
+        
+        <h2 style="font-family: var(--font-accent); font-size: 2.5rem; color: var(--color-primary); margin-bottom: 10px;">Something magical is being crafted...</h2>
+        <h1 class="section-title">We're Launching Soon</h1>
+        
+        <div class="countdown-grid" id="countdown">
+            <div class="countdown-item"><span id="days">30</span><span>Days</span></div>
+            <div class="countdown-item"><span id="hours">00</span><span>Hours</span></div>
+            <div class="countdown-item"><span id="mins">00</span><span>Mins</span></div>
+            <div class="countdown-item"><span id="secs">00</span><span>Secs</span></div>
+        </div>
+        
+        <p style="margin-bottom: var(--s-32);">Be the first to know when we twist into action. Join our notification list below.</p>
+        
+        <form class="notify-form">
+            <input type="email" placeholder="Your Email Address" required>
+            <button type="submit" class="btn btn-primary">Notify Me</button>
+        </form>
+
+        <div class="footer-socials" style="justify-content: center;">
+            <a href="#" class="icon-btn"><i class="ph ph-instagram-logo"></i></a>
+            <a href="#" class="icon-btn"><i class="ph ph-facebook-logo"></i></a>
+            <a href="#" class="icon-btn"><i class="ph ph-tiktok-logo"></i></a>
+        </div>
+    </div>
+
+    <script src="assets/js/main.js"></script>
+</body>
+</html>

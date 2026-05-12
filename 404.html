@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>404 — Page Floated Away</title>
+    
+    <!-- Icons -->
+    <script src="https://unpkg.com/@phosphor-icons/web@2.1.1"></script>
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="assets/css/style.css">
+    
+    <style>
+        body {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--color-bg);
+            text-align: center;
+            padding: var(--s-32);
+        }
+        .error-container { max-width: 600px; }
+        .balloon-404 {
+            width: 200px;
+            height: 250px;
+            margin: 0 auto var(--s-48);
+            position: relative;
+            animation: float 4s ease-in-out infinite;
+        }
+        .balloon-body {
+            width: 150px;
+            height: 180px;
+            background: var(--color-primary);
+            border-radius: 50% 50% 50% 50% / 40% 40% 60% 60%;
+            margin: 0 auto;
+            position: relative;
+        }
+        .balloon-body::after {
+            content: '404';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: #FFF;
+            font-size: 3rem;
+            font-weight: 900;
+            font-family: var(--font-display);
+        }
+        .balloon-string {
+            width: 2px;
+            height: 100px;
+            background: var(--color-primary);
+            margin: 0 auto;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="error-container">
+        <div class="balloon-404">
+            <div class="balloon-body"></div>
+            <div class="balloon-string"></div>
+        </div>
+        
+        <h1 style="font-size: 3rem; margin-bottom: var(--s-24);">Oops! This page has floated away.</h1>
+        <p style="margin-bottom: var(--s-48); color: var(--color-text-muted);">The link you followed might be broken, or the page may have been removed. Let's get you back to safety.</p>
+        
+        <a href="index.html" class="btn btn-primary">Back to Home</a>
+    </div>
+
+</body>
+</html>

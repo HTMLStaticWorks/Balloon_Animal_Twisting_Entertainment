@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TwistCraft — Modern Balloon Experiences</title>
+    
+    <!-- Icons -->
+    <script src="https://unpkg.com/@phosphor-icons/web@2.1.1"></script>
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/rtl.css">
+    
+    <style>
+        .hero-split {
+            display: flex;
+            min-height: 100vh;
+            align-items: center;
+            padding-top: 80px;
+        }
+        .hero-split-left {
+            flex: 1;
+            padding: var(--s-64);
+            text-align: left;
+        }
+        .hero-split-right {
+            flex: 1;
+            height: 100vh;
+            background: url('https://images.unsplash.com/photo-1574027411210-53096238b13d?q=80&w=1200') center/cover no-repeat;
+            position: relative;
+        }
+        .hero-split-left h1 { text-align: left; margin-bottom: var(--s-24); font-size: clamp(3rem, 6vw, 5rem); }
+        .hero-split-left p { text-align: left; margin: 0 0 var(--s-48) 0; font-size: 1.2rem; }
+        
+        .typewriter::after {
+            content: '|';
+            animation: blink 0.7s infinite;
+        }
+        @keyframes blink { 50% { opacity: 0; } }
+
+        @media (max-width: 1024px) {
+            .hero-split { flex-direction: column; }
+            .hero-split-right { height: 50vh; width: 100%; order: -1; }
+            .hero-split-left { text-align: center; }
+            .hero-split-left h1, .hero-split-left p { text-align: center; margin-left: auto; margin-right: auto; }
+        }
+
+        .countdown-section {
+            background: var(--color-primary);
+            color: #FFF;
+            padding: var(--s-64) 0;
+            text-align: center;
+        }
+        .countdown-grid {
+            display: flex;
+            justify-content: center;
+            gap: var(--s-48);
+            margin-top: var(--s-32);
+        }
+        .countdown-item span:first-child {
+            font-size: 3.5rem;
+            font-weight: 900;
+            display: block;
+            line-height: 1;
+        }
+        .countdown-item span:last-child {
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="container nav-container">
+            <a href="index.html" class="logo">
+                <span class="logo-icon"></span>
+                TwistCraft
+            </a>
+            <div class="nav-links">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="home2.html" class="nav-link">Home 2</a>
+                <a href="gallery.html" class="nav-link">Gallery</a>
+                <a href="services.html" class="nav-link">Services</a>
+                <a href="packages.html" class="nav-link">Packages</a>
+                <a href="workshops.html" class="nav-link">Workshops</a>
+                <a href="blog.html" class="nav-link">Blog</a>
+                <a href="contact.html" class="nav-link">Contact</a>
+            </div>
+            <div class="nav-actions">
+                <button class="icon-btn" id="rtl-toggle"><i class="ph ph-arrows-left-right"></i></button>
+                <button class="icon-btn" id="theme-toggle"><i class="ph ph-moon"></i></button>
+                <a href="booking.html" class="nav-cta">Book Now</a>
+                <button class="icon-btn hamburger" id="hamburger"><i class="ph ph-list"></i></button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Drawer placeholder for script compatibility -->
+    <div class="drawer-overlay" id="drawer-overlay"></div>
+    <div class="drawer" id="drawer">
+        <div class="drawer-header">
+            <a href="index.html" class="logo"><span class="logo-icon"></span>TwistCraft</a>
+            <button class="icon-btn" id="drawer-close"><i class="ph ph-x"></i></button>
+        </div>
+        <div class="drawer-links">
+            <a href="index.html" class="drawer-link">Home</a>
+            <a href="home2.html" class="drawer-link">Home 2</a>
+            <a href="gallery.html" class="drawer-link">Gallery</a>
+            <a href="services.html" class="drawer-link">Services</a>
+            <a href="packages.html" class="drawer-link">Packages</a>
+            <a href="workshops.html" class="drawer-link">Workshops</a>
+            <a href="blog.html" class="drawer-link">Blog</a>
+            <a href="contact.html" class="drawer-link">Contact</a>
+            <a href="booking.html" class="btn btn-primary" style="width: 100%;">Book Now</a>
+        </div>
+    </div>
+
+    <!-- Hero Split -->
+    <header class="hero-split">
+        <div class="hero-split-left">
+            <span class="section-subtitle">Premium Artistry</span>
+            <h1 id="typewriter-headline">Every Event Needs A </h1>
+            <p>From whimsical creatures to elegant décor, we bring the magic of high-end balloon art to your doorstep.</p>
+            <div style="display: flex; gap: var(--s-16);">
+                <a href="booking.html" class="btn btn-primary">Start Planning</a>
+                <a href="services.html" class="btn btn-outline">Our Services</a>
+            </div>
+        </div>
+        <div class="hero-split-right"></div>
+    </header>
+
+    <!-- Packages First -->
+    <section class="packages-overview">
+        <div class="container">
+            <span class="section-subtitle">Choose Your Experience</span>
+            <h2 class="section-title">Popular Packages</h2>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: var(--s-32);">
+                <div class="card">
+                    <h3>Starter Twister</h3>
+                    <p>Perfect for intimate gatherings.</p>
+                    <a href="packages.html" class="btn btn-primary">Book Now</a>
+                </div>
+                <div class="card">
+                    <h3>Grand Celebration</h3>
+                    <p>The ultimate entertainment package.</p>
+                    <a href="packages.html" class="btn btn-primary">Book Now</a>
+                </div>
+                <div class="card">
+                    <h3>Bespoke Artistry</h3>
+                    <p>Custom designs for unique themes.</p>
+                    <a href="packages.html" class="btn btn-primary">Book Now</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Workshop Countdown -->
+    <section class="countdown-section">
+        <div class="container">
+            <h2 style="color: #FFF;">Next Twister Workshop In:</h2>
+            <div class="countdown-grid" id="countdown">
+                <div class="countdown-item"><span id="days">00</span><span>Days</span></div>
+                <div class="countdown-item"><span id="hours">00</span><span>Hours</span></div>
+                <div class="countdown-item"><span id="mins">00</span><span>Mins</span></div>
+                <div class="countdown-item"><span id="secs">00</span><span>Secs</span></div>
+            </div>
+            <div style="margin-top: var(--s-48);">
+                <a href="workshops.html" class="btn btn-primary" style="background: #FFF; color: var(--color-primary);">Register Now</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer same as index -->
+    <footer class="footer">
+        <div class="container footer-grid">
+            <div class="footer-col footer-brand">
+                <a href="index.html" class="logo"><span class="logo-icon"></span>TwistCraft</a>
+                <p>Premium balloon artistry and entertainment for luxury events.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Explore</h4>
+                <div class="footer-links">
+                    <a href="gallery.html">Gallery</a>
+                    <a href="services.html">Services</a>
+                    <a href="packages.html">Packages</a>
+                </div>
+            </div>
+            <div class="footer-col">
+                <h4>Contact</h4>
+                <div class="footer-contact-item"><i class="ph ph-envelope"></i><span>hello@twistcraft.com</span></div>
+            </div>
+            <div class="footer-col">
+                <h4>Newsletter</h4>
+                <form class="newsletter-form">
+                    <input type="email" placeholder="Your Email">
+                    <button type="submit" class="btn btn-primary">Join</button>
+                </form>
+            </div>
+        </div>
+    </footer>
+
+    <script src="assets/js/main.js"></script>
+    <script>
+        // Typewriter Effect
+        const text = "Masterpiece.";
+        const headline = document.getElementById('typewriter-headline');
+        let index = 0;
+
+        function type() {
+            if (index < text.length) {
+                headline.innerHTML += text.charAt(index);
+                index++;
+                setTimeout(type, 150);
+            }
+        }
+        setTimeout(type, 1000);
+    </script>
+</body>
+</html>

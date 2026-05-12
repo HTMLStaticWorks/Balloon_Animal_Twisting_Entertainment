@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TwistCraft — Premium Balloon Artistry & Entertainment</title>
+    <meta name="description" content="Elevate your events with TwistCraft. Premium balloon sculptures, interactive entertainment, and professional workshops for parties, corporate events, and weddings.">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    
+    <!-- Icons -->
+    <script src="https://unpkg.com/@phosphor-icons/web@2.1.1"></script>
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/rtl.css">
+    
+    <style>
+        /* Hero Specific Animations */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            background: var(--color-bg);
+            padding-top: 80px;
+        }
+
+        .hero-content {
+            z-index: 10;
+            text-align: center;
+            max-width: 900px;
+        }
+
+        .hero-title {
+            font-size: clamp(3.5rem, 8vw, 7rem);
+            line-height: 0.9;
+            margin-bottom: var(--s-24);
+            font-weight: 900;
+        }
+
+        .hero-subtitle {
+            font-size: clamp(1.1rem, 2vw, 1.5rem);
+            color: var(--color-text-muted);
+            margin-bottom: var(--s-48);
+        }
+
+        .hero-btns {
+            display: flex;
+            gap: var(--s-16);
+            justify-content: center;
+        }
+
+        /* Floating Balloons */
+        .balloon-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .balloon {
+            position: absolute;
+            opacity: 0.6;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .balloon-1 { top: 20%; left: 10%; width: 120px; fill: var(--color-primary); animation-delay: 0s; }
+        .balloon-2 { top: 60%; left: 15%; width: 80px; fill: var(--color-secondary); animation-delay: 1.5s; }
+        .balloon-3 { top: 15%; right: 15%; width: 100px; fill: var(--color-accent); animation-delay: 3s; }
+        .balloon-4 { top: 70%; right: 10%; width: 90px; fill: var(--color-primary); animation-delay: 4.5s; }
+        .balloon-5 { top: 40%; right: 25%; width: 70px; fill: var(--color-secondary); animation-delay: 0.5s; }
+
+        /* Complex Badges */
+        .badge {
+            padding: 6px 12px;
+            border-radius: 50px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .badge-basic { background: var(--color-accent); color: #FFF; }
+        .badge-intermediate { background: var(--color-secondary); color: #111; }
+        .badge-advanced { background: var(--color-primary); color: #FFF; }
+        .badge-masterwork { background: linear-gradient(45deg, var(--color-primary), var(--color-secondary)); color: #FFF; }
+
+        /* Testimonials Carousel */
+        .testimonials-track {
+            display: flex;
+            gap: var(--s-32);
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            padding: var(--s-48) 0;
+            scrollbar-width: none;
+        }
+        .testimonial-card {
+            min-width: 400px;
+            flex-shrink: 0;
+            scroll-snap-align: center;
+        }
+        @media (max-width: 768px) {
+            .testimonial-card { min-width: 300px; }
+        }
+
+        /* Banner CTA */
+        .cta-banner {
+            background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+            color: #FFF;
+            text-align: center;
+            border-radius: var(--radius);
+            padding: var(--s-64);
+        }
+        .cta-banner h2 { color: #FFF; margin-bottom: var(--s-16); }
+        .cta-banner p { color: rgba(255,255,255,0.9); margin-bottom: var(--s-32); }
+        .cta-banner .btn-primary { background: #FFF; color: var(--color-primary); }
+    </style>
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="container nav-container">
+            <a href="index.html" class="logo">
+                <span class="logo-icon"></span>
+                TwistCraft
+            </a>
+            
+            <div class="nav-links">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="home2.html" class="nav-link">Home 2</a>
+                <a href="gallery.html" class="nav-link">Gallery</a>
+                <a href="services.html" class="nav-link">Services</a>
+                <a href="packages.html" class="nav-link">Packages</a>
+                <a href="workshops.html" class="nav-link">Workshops</a>
+                <a href="blog.html" class="nav-link">Blog</a>
+                <a href="contact.html" class="nav-link">Contact</a>
+            </div>
+
+            <div class="nav-actions">
+                <button class="icon-btn" id="rtl-toggle" aria-label="Toggle RTL">
+                    <i class="ph ph-arrows-left-right"></i>
+                </button>
+                <button class="icon-btn" id="theme-toggle" aria-label="Toggle Theme">
+                    <i class="ph ph-moon"></i>
+                </button>
+                <a href="login.html" class="nav-link">Login</a>
+                <a href="booking.html" class="nav-cta">Book Now</a>
+                <button class="icon-btn hamburger" id="hamburger" aria-label="Open Menu">
+                    <i class="ph ph-list"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Mobile Drawer -->
+    <div class="drawer-overlay" id="drawer-overlay"></div>
+    <div class="drawer" id="drawer">
+        <div class="drawer-header">
+            <a href="index.html" class="logo">
+                <span class="logo-icon"></span>
+                TwistCraft
+            </a>
+            <button class="icon-btn" id="drawer-close">
+                <i class="ph ph-x"></i>
+            </button>
+        </div>
+        <div class="drawer-links">
+            <a href="index.html" class="drawer-link">Home</a>
+            <a href="home2.html" class="drawer-link">Home 2</a>
+            <a href="gallery.html" class="drawer-link">Gallery</a>
+            <a href="services.html" class="drawer-link">Services</a>
+            <a href="packages.html" class="drawer-link">Packages</a>
+            <a href="workshops.html" class="drawer-link">Workshops</a>
+            <a href="blog.html" class="drawer-link">Blog</a>
+            <a href="contact.html" class="drawer-link">Contact</a>
+            <a href="login.html" class="drawer-link">Login</a>
+            <a href="booking.html" class="btn btn-primary" style="width: 100%;">Book Now</a>
+        </div>
+        <div class="drawer-footer">
+            <button class="icon-btn" id="drawer-theme-toggle">
+                <i class="ph ph-moon"></i> Theme
+            </button>
+            <button class="icon-btn" id="drawer-rtl-toggle">
+                <i class="ph ph-arrows-left-right"></i> RTL Support
+            </button>
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <header class="hero">
+        <div class="balloon-container">
+            <!-- CSS Balloons -->
+            <svg class="balloon balloon-1" viewBox="0 0 100 120">
+                <path d="M50,0 C77.6,0 100,22.4 100,50 C100,77.6 77.6,100 50,100 C22.4,100 0,77.6 0,50 C0,22.4 22.4,0 50,0 Z M50,100 L50,120" />
+            </svg>
+            <svg class="balloon balloon-2" viewBox="0 0 100 120">
+                <path d="M50,0 C77.6,0 100,22.4 100,50 C100,77.6 77.6,100 50,100 C22.4,100 0,77.6 0,50 C0,22.4 22.4,0 50,0 Z M50,100 L50,120" />
+            </svg>
+            <svg class="balloon balloon-3" viewBox="0 0 100 120">
+                <path d="M50,0 C77.6,0 100,22.4 100,50 C100,77.6 77.6,100 50,100 C22.4,100 0,77.6 0,50 C0,22.4 22.4,0 50,0 Z M50,100 L50,120" />
+            </svg>
+            <svg class="balloon balloon-4" viewBox="0 0 100 120">
+                <path d="M50,0 C77.6,0 100,22.4 100,50 C100,77.6 77.6,100 50,100 C22.4,100 0,77.6 0,50 C0,22.4 22.4,0 50,0 Z M50,100 L50,120" />
+            </svg>
+            <svg class="balloon balloon-5" viewBox="0 0 100 120">
+                <path d="M50,0 C77.6,0 100,22.4 100,50 C100,77.6 77.6,100 50,100 C22.4,100 0,77.6 0,50 C0,22.4 22.4,0 50,0 Z M50,100 L50,120" />
+            </svg>
+        </div>
+
+        <div class="container hero-content">
+            <h1 class="hero-title animate-up" style="animation-delay: 0.1s;">Art That <span style="color: var(--color-primary);">Floats</span></h1>
+            <p class="hero-subtitle animate-up" style="animation-delay: 0.3s;">Luxury balloon artistry for the modern celebration. We twist the ordinary into extraordinary masterpieces.</p>
+            <div class="hero-btns animate-up" style="animation-delay: 0.5s;">
+                <a href="booking.html" class="btn btn-primary">Book An Event</a>
+                <a href="gallery.html" class="btn btn-outline">See Our Gallery</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Sculpture Gallery Teaser -->
+    <section class="gallery-teaser">
+        <div class="container">
+            <span class="section-subtitle">Portfolio</span>
+            <h2 class="section-title">Sculpture Gallery</h2>
+            <p class="section-desc">A glimpse into our world of inflated imagination. From basic animals to complex masterworks.</p>
+            
+            <div class="gallery-grid">
+                <!-- Item 1 -->
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1530103862676-fa392231fa3c?q=80&w=800" alt="Balloon Sculpture" loading="lazy">
+                    <div style="padding: 15px; position: absolute; bottom: 0; left: 0; width: 100%; background: rgba(0,0,0,0.5); backdrop-filter: blur(5px); color: #FFF; display: flex; justify-content: space-between; align-items: center;">
+                        <span>Neon Dragon</span>
+                        <span class="badge badge-masterwork">Masterwork</span>
+                    </div>
+                </div>
+                <!-- Item 2 -->
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1473111583972-e160124697d8?q=80&w=800" alt="Balloon Sculpture" loading="lazy">
+                    <div style="padding: 15px; position: absolute; bottom: 0; left: 0; width: 100%; background: rgba(0,0,0,0.5); backdrop-filter: blur(5px); color: #FFF; display: flex; justify-content: space-between; align-items: center;">
+                        <span>Classic Poodle</span>
+                        <span class="badge badge-basic">Basic</span>
+                    </div>
+                </div>
+                <!-- Item 3 -->
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1610473068533-31362e49956d?q=80&w=800" alt="Balloon Sculpture" loading="lazy">
+                    <div style="padding: 15px; position: absolute; bottom: 0; left: 0; width: 100%; background: rgba(0,0,0,0.5); backdrop-filter: blur(5px); color: #FFF; display: flex; justify-content: space-between; align-items: center;">
+                        <span>Fantasy Unicorn</span>
+                        <span class="badge badge-advanced">Advanced</span>
+                    </div>
+                </div>
+                <!-- Item 4 -->
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1560450411-47752e557b61?q=80&w=800" alt="Balloon Sculpture" loading="lazy">
+                    <div style="padding: 15px; position: absolute; bottom: 0; left: 0; width: 100%; background: rgba(0,0,0,0.5); backdrop-filter: blur(5px); color: #FFF; display: flex; justify-content: space-between; align-items: center;">
+                        <span>Safari Lion</span>
+                        <span class="badge badge-intermediate">Intermediate</span>
+                    </div>
+                </div>
+                <!-- Item 5 -->
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1525268771113-32d9e9021a97?q=80&w=800" alt="Balloon Sculpture" loading="lazy">
+                    <div style="padding: 15px; position: absolute; bottom: 0; left: 0; width: 100%; background: rgba(0,0,0,0.5); backdrop-filter: blur(5px); color: #FFF; display: flex; justify-content: space-between; align-items: center;">
+                        <span>Ballooon Arch</span>
+                        <span class="badge badge-advanced">Advanced</span>
+                    </div>
+                </div>
+                <!-- Item 6 -->
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1533777857889-4be7c70b33f7?q=80&w=800" alt="Balloon Sculpture" loading="lazy">
+                    <div style="padding: 15px; position: absolute; bottom: 0; left: 0; width: 100%; background: rgba(0,0,0,0.5); backdrop-filter: blur(5px); color: #FFF; display: flex; justify-content: space-between; align-items: center;">
+                        <span>Twisted Bouquet</span>
+                        <span class="badge badge-intermediate">Intermediate</span>
+                    </div>
+                </div>
+            </div>
+
+            <div style="text-align: center; margin-top: var(--s-48);">
+                <a href="gallery.html" class="btn btn-outline">Explore Full Gallery</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Event Packages Overview -->
+    <section class="packages-overview" style="background-color: var(--color-surface);">
+        <div class="container">
+            <span class="section-subtitle">Services</span>
+            <h2 class="section-title">Event Packages</h2>
+            <p class="section-desc">Tailored entertainment experiences for every occasion.</p>
+
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: var(--s-32);">
+                <!-- Package 1 -->
+                <div class="card">
+                    <i class="ph ph-cake" style="font-size: 3rem; color: var(--color-primary); margin-bottom: var(--s-24);"></i>
+                    <h3 style="margin-bottom: var(--s-16);">Birthday Bash</h3>
+                    <p style="margin-bottom: var(--s-24); font-size: 0.95rem;">Interactive twisting, custom birthday crown, and animal favorites for all guests.</p>
+                    <span style="font-size: 1.5rem; font-weight: 800; margin-bottom: var(--s-32);">From $250</span>
+                    <a href="packages.html" class="btn btn-primary" style="width: 100%;">View Details</a>
+                </div>
+                <!-- Package 2 -->
+                <div class="card" style="border: 2px solid var(--color-primary);">
+                    <i class="ph ph-buildings" style="font-size: 3rem; color: var(--color-primary); margin-bottom: var(--s-24);"></i>
+                    <h3 style="margin-bottom: var(--s-16);">Corporate Gala</h3>
+                    <p style="margin-bottom: var(--s-24); font-size: 0.95rem;">High-speed twisting, brand-colored sculptures, and ambient entertainment for large crowds.</p>
+                    <span style="font-size: 1.5rem; font-weight: 800; margin-bottom: var(--s-32);">From $600</span>
+                    <a href="packages.html" class="btn btn-primary" style="width: 100%;">View Details</a>
+                </div>
+                <!-- Package 3 -->
+                <div class="card">
+                    <i class="ph ph-heart" style="font-size: 3rem; color: var(--color-primary); margin-bottom: var(--s-24);"></i>
+                    <h3 style="margin-bottom: var(--s-16);">Dream Wedding</h3>
+                    <p style="margin-bottom: var(--s-24); font-size: 0.95rem;">Elegant balloon décor, photo booth accents, and sophisticated twisting for cocktail hour.</p>
+                    <span style="font-size: 1.5rem; font-weight: 800; margin-bottom: var(--s-32);">From $800</span>
+                    <a href="packages.html" class="btn btn-primary" style="width: 100%;">View Details</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why TwistCraft -->
+    <section class="features">
+        <div class="container">
+            <span class="section-subtitle">The Difference</span>
+            <h2 class="section-title">Why TwistCraft?</h2>
+            <p class="section-desc">We don't just blow up balloons; we create memories that last long after the party ends.</p>
+
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: var(--s-48);">
+                <div style="text-align: center;">
+                    <i class="ph ph-certificate" style="font-size: 2.5rem; color: var(--color-accent); margin-bottom: var(--s-16);"></i>
+                    <h4 style="margin-bottom: var(--s-12);">Certified Artists</h4>
+                    <p style="font-size: 0.9rem;">Trained professionals with years of experience in high-end artistry.</p>
+                </div>
+                <div style="text-align: center;">
+                    <i class="ph ph-palette" style="font-size: 2.5rem; color: var(--color-secondary); margin-bottom: var(--s-16);"></i>
+                    <h4 style="margin-bottom: var(--s-12);">500+ Designs</h4>
+                    <p style="font-size: 0.9rem;">From tiny ladybugs to life-sized characters, our repertoire is endless.</p>
+                </div>
+                <div style="text-align: center;">
+                    <i class="ph ph-calendar-check" style="font-size: 2.5rem; color: var(--color-primary); margin-bottom: var(--s-16);"></i>
+                    <h4 style="margin-bottom: var(--s-12);">Same-Day Booking</h4>
+                    <p style="font-size: 0.9rem;">Last minute celebration? Check our real-time availability online.</p>
+                </div>
+                <div style="text-align: center;">
+                    <i class="ph ph-magic-wand" style="font-size: 2.5rem; color: var(--color-accent); margin-bottom: var(--s-16);"></i>
+                    <h4 style="margin-bottom: var(--s-12);">Custom Sculptures</h4>
+                    <p style="font-size: 0.9rem;">Have a specific theme? We design custom pieces tailored to you.</p>
+                </div>
+                <div style="text-align: center;">
+                    <i class="ph ph-map-trifold" style="font-size: 2.5rem; color: var(--color-secondary); margin-bottom: var(--s-16);"></i>
+                    <h4 style="margin-bottom: var(--s-12);">Nationwide Service</h4>
+                    <p style="font-size: 0.9rem;">Our team travels across the country for large-scale activations.</p>
+                </div>
+                <div style="text-align: center;">
+                    <i class="ph ph-graduation-cap" style="font-size: 2.5rem; color: var(--color-primary); margin-bottom: var(--s-16);"></i>
+                    <h4 style="margin-bottom: var(--s-12);">Workshop Trained</h4>
+                    <p style="font-size: 0.9rem;">We also teach! Our artists are instructors in the twisting community.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="testimonials" style="background-color: var(--color-surface); overflow: hidden;">
+        <div class="container">
+            <span class="section-subtitle">Kind Words</span>
+            <h2 class="section-title">Client Stories</h2>
+            
+            <div class="testimonials-track">
+                <!-- Testimonial 1 -->
+                <div class="card testimonial-card">
+                    <div style="display: flex; gap: 5px; margin-bottom: var(--s-16); color: var(--color-secondary);">
+                        <i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i>
+                    </div>
+                    <p style="font-style: italic; margin-bottom: var(--s-24);">"Absolutely mind-blowing! The artists at TwistCraft didn't just make balloons; they performed magic. Our wedding guests were mesmerized."</p>
+                    <h5 style="font-family: var(--font-body); font-weight: 700;">Sarah & James</h5>
+                    <span style="font-size: 0.85rem; color: var(--color-text-muted);">Wedding Event</span>
+                </div>
+                <!-- Testimonial 2 -->
+                <div class="card testimonial-card">
+                    <div style="display: flex; gap: 5px; margin-bottom: var(--s-16); color: var(--color-secondary);">
+                        <i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i>
+                    </div>
+                    <p style="font-style: italic; margin-bottom: var(--s-24);">"The highlight of our corporate brand activation. They managed to twist our company logo in under 2 minutes! Remarkable talent."</p>
+                    <h5 style="font-family: var(--font-body); font-weight: 700;">TechCorp Global</h5>
+                    <span style="font-size: 0.85rem; color: var(--color-text-muted);">Corporate Event</span>
+                </div>
+                <!-- Testimonial 3 -->
+                <div class="card testimonial-card">
+                    <div style="display: flex; gap: 5px; margin-bottom: var(--s-16); color: var(--color-secondary);">
+                        <i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i>
+                    </div>
+                    <p style="font-style: italic; margin-bottom: var(--s-24);">"My daughter's 5th birthday was a dream. The balloon crown was the talk of the school for weeks. Highly professional service."</p>
+                    <h5 style="font-family: var(--font-body); font-weight: 700;">The Miller Family</h5>
+                    <span style="font-size: 0.85rem; color: var(--color-text-muted);">Birthday Party</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Banner -->
+    <section class="container">
+        <div class="cta-banner">
+            <h2>Ready to Twist Your Event?</h2>
+            <p>Book your professional balloon artist today and make your celebration unforgettable.</p>
+            <a href="booking.html" class="btn btn-primary">Book Online Now</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container footer-grid">
+            <div class="footer-col footer-brand">
+                <a href="index.html" class="logo">
+                    <span class="logo-icon"></span>
+                    TwistCraft
+                </a>
+                <p>Premium balloon artistry and entertainment for luxury events and unforgettable celebrations.</p>
+                <div class="footer-socials">
+                    <a href="#" class="icon-btn"><i class="ph ph-instagram-logo"></i></a>
+                    <a href="#" class="icon-btn"><i class="ph ph-facebook-logo"></i></a>
+                    <a href="#" class="icon-btn"><i class="ph ph-tiktok-logo"></i></a>
+                    <a href="#" class="icon-btn"><i class="ph ph-youtube-logo"></i></a>
+                </div>
+            </div>
+            
+            <div class="footer-col">
+                <h4>Quick Links</h4>
+                <div class="footer-links">
+                    <a href="index.html">Home</a>
+                    <a href="gallery.html">Gallery</a>
+                    <a href="services.html">Services</a>
+                    <a href="packages.html">Packages</a>
+                    <a href="workshops.html">Workshops</a>
+                    <a href="booking.html">Book Now</a>
+                </div>
+            </div>
+
+            <div class="footer-col">
+                <h4>Contact Us</h4>
+                <div class="footer-contact-item">
+                    <i class="ph ph-map-pin"></i>
+                    <span>123 Twister Lane, Balloon City, BC 45678</span>
+                </div>
+                <div class="footer-contact-item">
+                    <i class="ph ph-phone"></i>
+                    <span>+1 (555) TWIST-IT</span>
+                </div>
+                <div class="footer-contact-item">
+                    <i class="ph ph-envelope"></i>
+                    <span>hello@twistcraft.com</span>
+                </div>
+                <div class="footer-contact-item">
+                    <i class="ph ph-clock"></i>
+                    <span>Mon - Sun: 9AM - 8PM</span>
+                </div>
+            </div>
+
+            <div class="footer-col footer-newsletter">
+                <h4>Newsletter</h4>
+                <p>Get twisting tips and event inspiration delivered to your inbox.</p>
+                <form class="newsletter-form">
+                    <input type="email" placeholder="Your Email Address" required>
+                    <button type="submit" class="btn btn-primary">Subscribe</button>
+                </form>
+                <!-- Mailchimp Embed Placeholder -->
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div class="container">
+                <p>&copy; 2026 TwistCraft Entertainment. All Rights Reserved. Crafted with passion.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="assets/js/main.js"></script>
+</body>
+</html>
