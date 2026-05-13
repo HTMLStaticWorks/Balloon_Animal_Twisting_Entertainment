@@ -1,22 +1,24 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TwistCraft — Premium Balloon Artistry & Entertainment</title>
-    <meta name="description" content="Elevate your events with TwistCraft. Premium balloon sculptures, interactive entertainment, and professional workshops for parties, corporate events, and weddings.">
-    
+    <meta name="description"
+        content="Elevate your events with TwistCraft. Premium balloon sculptures, interactive entertainment, and professional workshops for parties, corporate events, and weddings.">
+
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    
+
     <!-- Icons -->
     <script src="https://unpkg.com/@phosphor-icons/web@2.1.1"></script>
-    
+
     <!-- Styles -->
     <link rel="stylesheet" href="assets/css/style.css">
     <link rel="stylesheet" href="assets/css/rtl.css">
-    
+
     <style>
         /* Hero Specific Animations */
         .hero {
@@ -72,11 +74,45 @@
             animation: float 6s ease-in-out infinite;
         }
 
-        .balloon-1 { top: 20%; left: 10%; width: 120px; fill: var(--color-primary); animation-delay: 0s; }
-        .balloon-2 { top: 60%; left: 15%; width: 80px; fill: var(--color-secondary); animation-delay: 1.5s; }
-        .balloon-3 { top: 15%; right: 15%; width: 100px; fill: var(--color-accent); animation-delay: 3s; }
-        .balloon-4 { top: 70%; right: 10%; width: 90px; fill: var(--color-primary); animation-delay: 4.5s; }
-        .balloon-5 { top: 40%; right: 25%; width: 70px; fill: var(--color-secondary); animation-delay: 0.5s; }
+        .balloon-1 {
+            top: 20%;
+            left: 10%;
+            width: 120px;
+            fill: var(--color-primary);
+            animation-delay: 0s;
+        }
+
+        .balloon-2 {
+            top: 60%;
+            left: 15%;
+            width: 80px;
+            fill: var(--color-secondary);
+            animation-delay: 1.5s;
+        }
+
+        .balloon-3 {
+            top: 15%;
+            right: 15%;
+            width: 100px;
+            fill: var(--color-accent);
+            animation-delay: 3s;
+        }
+
+        .balloon-4 {
+            top: 70%;
+            right: 10%;
+            width: 90px;
+            fill: var(--color-primary);
+            animation-delay: 4.5s;
+        }
+
+        .balloon-5 {
+            top: 40%;
+            right: 25%;
+            width: 70px;
+            fill: var(--color-secondary);
+            animation-delay: 0.5s;
+        }
 
         /* Complex Badges */
         .badge {
@@ -87,27 +123,60 @@
             text-transform: uppercase;
             letter-spacing: 0.5px;
         }
-        .badge-basic { background: var(--color-accent); color: #FFF; }
-        .badge-intermediate { background: var(--color-secondary); color: #111; }
-        .badge-advanced { background: var(--color-primary); color: #FFF; }
-        .badge-masterwork { background: linear-gradient(45deg, var(--color-primary), var(--color-secondary)); color: #FFF; }
 
-        /* Testimonials Carousel */
-        .testimonials-track {
-            display: flex;
+        .badge-basic {
+            background: var(--color-accent);
+            color: #FFF;
+        }
+
+        .badge-intermediate {
+            background: var(--color-secondary);
+            color: #111;
+        }
+
+        .badge-advanced {
+            background: var(--color-primary);
+            color: #FFF;
+        }
+
+        .badge-masterwork {
+            background: linear-gradient(45deg, var(--color-primary), var(--color-secondary));
+            color: #FFF;
+        }
+
+        /* Testimonials Grid */
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
             gap: var(--s-32);
-            overflow-x: auto;
-            scroll-snap-type: x mandatory;
             padding: var(--s-48) 0;
-            scrollbar-width: none;
         }
+
         .testimonial-card {
-            min-width: 400px;
-            flex-shrink: 0;
-            scroll-snap-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            padding: var(--s-48);
+            height: 100%;
         }
-        @media (max-width: 768px) {
-            .testimonial-card { min-width: 300px; }
+
+        .testimonial-user {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: var(--s-24);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            border: 3px solid var(--color-bg);
+        }
+
+        @media (max-width: 600px) {
+            .testimonials-grid {
+                grid-template-columns: 1fr;
+                max-width: 600px;
+                margin: 0 auto;
+            }
         }
 
         /* Banner CTA */
@@ -118,11 +187,57 @@
             border-radius: var(--radius);
             padding: var(--s-64);
         }
-        .cta-banner h2 { color: #FFF; margin-bottom: var(--s-16); }
-        .cta-banner p { color: rgba(255,255,255,0.9); margin-bottom: var(--s-32); }
-        .cta-banner .btn-primary { background: #FFF; color: var(--color-primary); }
+
+        .cta-banner h2 {
+            color: #FFF;
+            margin-bottom: var(--s-16);
+        }
+
+        .cta-banner p {
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: var(--s-32);
+        }
+
+        .cta-banner .btn-primary {
+            background: #FFF;
+            color: var(--color-primary);
+        }
+
+
+        .hero-bg-img {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+            z-index: 0;
+            opacity: 0.25;
+            /* subtle — keeps text readable */
+            transition: opacity 0.5s ease;
+        }
+
+        /* Overlay gradient so text pops */
+        .hero::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(ellipse at center, transparent 20%, var(--color-bg) 80%);
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        /* Push balloons and content above the overlay */
+        .balloon-container {
+            z-index: 2;
+        }
+
+        .hero-content {
+            z-index: 3;
+        }
     </style>
 </head>
+
 <body>
 
     <!-- Navbar -->
@@ -132,7 +247,7 @@
                 <span class="logo-icon"></span>
                 TwistCraft
             </a>
-            
+
             <div class="nav-links">
                 <a href="index.html" class="nav-link">Home</a>
                 <a href="home2.html" class="nav-link">Home 2</a>
@@ -151,8 +266,7 @@
                 <button class="icon-btn" id="theme-toggle" aria-label="Toggle Theme">
                     <i class="ph ph-moon"></i>
                 </button>
-                <a href="login.html" class="nav-link">Login</a>
-                <a href="booking.html" class="nav-cta">Book Now</a>
+                <a href="login.html" class="nav-cta">Login</a>
                 <button class="icon-btn hamburger" id="hamburger" aria-label="Open Menu">
                     <i class="ph ph-list"></i>
                 </button>
@@ -181,8 +295,7 @@
             <a href="workshops.html" class="drawer-link">Workshops</a>
             <a href="blog.html" class="drawer-link">Blog</a>
             <a href="contact.html" class="drawer-link">Contact</a>
-            <a href="login.html" class="drawer-link">Login</a>
-            <a href="booking.html" class="btn btn-primary" style="width: 100%;">Book Now</a>
+            <a href="login.html" class="btn btn-primary" style="width: 100%;">Login</a>
         </div>
         <div class="drawer-footer">
             <button class="icon-btn" id="drawer-theme-toggle">
@@ -194,30 +307,38 @@
         </div>
     </div>
 
-    <!-- Hero Section -->
     <header class="hero">
         <div class="balloon-container">
-            <!-- CSS Balloons -->
             <svg class="balloon balloon-1" viewBox="0 0 100 120">
-                <path d="M50,0 C77.6,0 100,22.4 100,50 C100,77.6 77.6,100 50,100 C22.4,100 0,77.6 0,50 C0,22.4 22.4,0 50,0 Z M50,100 L50,120" />
+                <path
+                    d="M50,0 C77.6,0 100,22.4 100,50 C100,77.6 77.6,100 50,100 C22.4,100 0,77.6 0,50 C0,22.4 22.4,0 50,0 Z M50,100 L50,120" />
             </svg>
             <svg class="balloon balloon-2" viewBox="0 0 100 120">
-                <path d="M50,0 C77.6,0 100,22.4 100,50 C100,77.6 77.6,100 50,100 C22.4,100 0,77.6 0,50 C0,22.4 22.4,0 50,0 Z M50,100 L50,120" />
+                <path
+                    d="M50,0 C77.6,0 100,22.4 100,50 C100,77.6 77.6,100 50,100 C22.4,100 0,77.6 0,50 C0,22.4 22.4,0 50,0 Z M50,100 L50,120" />
             </svg>
             <svg class="balloon balloon-3" viewBox="0 0 100 120">
-                <path d="M50,0 C77.6,0 100,22.4 100,50 C100,77.6 77.6,100 50,100 C22.4,100 0,77.6 0,50 C0,22.4 22.4,0 50,0 Z M50,100 L50,120" />
+                <path
+                    d="M50,0 C77.6,0 100,22.4 100,50 C100,77.6 77.6,100 50,100 C22.4,100 0,77.6 0,50 C0,22.4 22.4,0 50,0 Z M50,100 L50,120" />
             </svg>
             <svg class="balloon balloon-4" viewBox="0 0 100 120">
-                <path d="M50,0 C77.6,0 100,22.4 100,50 C100,77.6 77.6,100 50,100 C22.4,100 0,77.6 0,50 C0,22.4 22.4,0 50,0 Z M50,100 L50,120" />
+                <path
+                    d="M50,0 C77.6,0 100,22.4 100,50 C100,77.6 77.6,100 50,100 C22.4,100 0,77.6 0,50 C0,22.4 22.4,0 50,0 Z M50,100 L50,120" />
             </svg>
             <svg class="balloon balloon-5" viewBox="0 0 100 120">
-                <path d="M50,0 C77.6,0 100,22.4 100,50 C100,77.6 77.6,100 50,100 C22.4,100 0,77.6 0,50 C0,22.4 22.4,0 50,0 Z M50,100 L50,120" />
+                <path
+                    d="M50,0 C77.6,0 100,22.4 100,50 C100,77.6 77.6,100 50,100 C22.4,100 0,77.6 0,50 C0,22.4 22.4,0 50,0 Z M50,100 L50,120" />
             </svg>
         </div>
 
+        <!-- Background Image -->
+        <img src="assets/images/hero-balloon-artist.jpg" alt="" class="hero-bg-img" aria-hidden="true" loading="eager">
+
         <div class="container hero-content">
-            <h1 class="hero-title animate-up" style="animation-delay: 0.1s;">Art That <span style="color: var(--color-primary);">Floats</span></h1>
-            <p class="hero-subtitle animate-up" style="animation-delay: 0.3s;">Luxury balloon artistry for the modern celebration. We twist the ordinary into extraordinary masterpieces.</p>
+            <h1 class="hero-title animate-up" style="animation-delay: 0.1s;">Art That <span
+                    style="color: var(--color-primary);">Floats</span></h1>
+            <p class="hero-subtitle animate-up" style="animation-delay: 0.3s;">Luxury balloon artistry for the modern
+                celebration. We twist the ordinary into extraordinary masterpieces.</p>
             <div class="hero-btns animate-up" style="animation-delay: 0.5s;">
                 <a href="booking.html" class="btn btn-primary">Book An Event</a>
                 <a href="gallery.html" class="btn btn-outline">See Our Gallery</a>
@@ -230,53 +351,60 @@
         <div class="container">
             <span class="section-subtitle">Portfolio</span>
             <h2 class="section-title">Sculpture Gallery</h2>
-            <p class="section-desc">A glimpse into our world of inflated imagination. From basic animals to complex masterworks.</p>
-            
+            <p class="section-desc">A glimpse into our world of inflated imagination. From basic animals to complex
+                masterworks.</p>
+
             <div class="gallery-grid">
                 <!-- Item 1 -->
                 <div class="gallery-item">
-                    <img src="https://images.unsplash.com/photo-1530103862676-fa392231fa3c?q=80&w=800" alt="Balloon Sculpture" loading="lazy">
-                    <div style="padding: 15px; position: absolute; bottom: 0; left: 0; width: 100%; background: rgba(0,0,0,0.5); backdrop-filter: blur(5px); color: #FFF; display: flex; justify-content: space-between; align-items: center;">
+                    <img src="assets/images/gallery-neon-dragon.jpg" alt="Balloon Sculpture" loading="lazy">
+                    <div
+                        style="padding: 15px; position: absolute; bottom: 0; left: 0; width: 100%; background: rgba(0,0,0,0.5); backdrop-filter: blur(5px); color: #FFF; display: flex; justify-content: space-between; align-items: center;">
                         <span>Neon Dragon</span>
                         <span class="badge badge-masterwork">Masterwork</span>
                     </div>
                 </div>
                 <!-- Item 2 -->
                 <div class="gallery-item">
-                    <img src="https://images.unsplash.com/photo-1473111583972-e160124697d8?q=80&w=800" alt="Balloon Sculpture" loading="lazy">
-                    <div style="padding: 15px; position: absolute; bottom: 0; left: 0; width: 100%; background: rgba(0,0,0,0.5); backdrop-filter: blur(5px); color: #FFF; display: flex; justify-content: space-between; align-items: center;">
+                    <img src="assets/images/gallery-classic-poodle.jpg" alt="Balloon Sculpture" loading="lazy">
+                    <div
+                        style="padding: 15px; position: absolute; bottom: 0; left: 0; width: 100%; background: rgba(0,0,0,0.5); backdrop-filter: blur(5px); color: #FFF; display: flex; justify-content: space-between; align-items: center;">
                         <span>Classic Poodle</span>
                         <span class="badge badge-basic">Basic</span>
                     </div>
                 </div>
                 <!-- Item 3 -->
                 <div class="gallery-item">
-                    <img src="https://images.unsplash.com/photo-1610473068533-31362e49956d?q=80&w=800" alt="Balloon Sculpture" loading="lazy">
-                    <div style="padding: 15px; position: absolute; bottom: 0; left: 0; width: 100%; background: rgba(0,0,0,0.5); backdrop-filter: blur(5px); color: #FFF; display: flex; justify-content: space-between; align-items: center;">
+                    <img src="assets/images/gallery-fantasy-unicorn.jpg" alt="Balloon Sculpture" loading="lazy">
+                    <div
+                        style="padding: 15px; position: absolute; bottom: 0; left: 0; width: 100%; background: rgba(0,0,0,0.5); backdrop-filter: blur(5px); color: #FFF; display: flex; justify-content: space-between; align-items: center;">
                         <span>Fantasy Unicorn</span>
                         <span class="badge badge-advanced">Advanced</span>
                     </div>
                 </div>
                 <!-- Item 4 -->
                 <div class="gallery-item">
-                    <img src="https://images.unsplash.com/photo-1560450411-47752e557b61?q=80&w=800" alt="Balloon Sculpture" loading="lazy">
-                    <div style="padding: 15px; position: absolute; bottom: 0; left: 0; width: 100%; background: rgba(0,0,0,0.5); backdrop-filter: blur(5px); color: #FFF; display: flex; justify-content: space-between; align-items: center;">
+                    <img src="assets/images/gallery-safari-lion.jpg" alt="Balloon Sculpture" loading="lazy">
+                    <div
+                        style="padding: 15px; position: absolute; bottom: 0; left: 0; width: 100%; background: rgba(0,0,0,0.5); backdrop-filter: blur(5px); color: #FFF; display: flex; justify-content: space-between; align-items: center;">
                         <span>Safari Lion</span>
                         <span class="badge badge-intermediate">Intermediate</span>
                     </div>
                 </div>
                 <!-- Item 5 -->
                 <div class="gallery-item">
-                    <img src="https://images.unsplash.com/photo-1525268771113-32d9e9021a97?q=80&w=800" alt="Balloon Sculpture" loading="lazy">
-                    <div style="padding: 15px; position: absolute; bottom: 0; left: 0; width: 100%; background: rgba(0,0,0,0.5); backdrop-filter: blur(5px); color: #FFF; display: flex; justify-content: space-between; align-items: center;">
-                        <span>Ballooon Arch</span>
+                    <img src="assets/images/gallery-balloon-arch.jpg" alt="Balloon Sculpture" loading="lazy">
+                    <div
+                        style="padding: 15px; position: absolute; bottom: 0; left: 0; width: 100%; background: rgba(0,0,0,0.5); backdrop-filter: blur(5px); color: #FFF; display: flex; justify-content: space-between; align-items: center;">
+                        <span>Balloon Arch</span>
                         <span class="badge badge-advanced">Advanced</span>
                     </div>
                 </div>
                 <!-- Item 6 -->
                 <div class="gallery-item">
-                    <img src="https://images.unsplash.com/photo-1533777857889-4be7c70b33f7?q=80&w=800" alt="Balloon Sculpture" loading="lazy">
-                    <div style="padding: 15px; position: absolute; bottom: 0; left: 0; width: 100%; background: rgba(0,0,0,0.5); backdrop-filter: blur(5px); color: #FFF; display: flex; justify-content: space-between; align-items: center;">
+                    <img src="assets/images/gallery-twisted-bouquet.jpg" alt="Balloon Sculpture" loading="lazy">
+                    <div
+                        style="padding: 15px; position: absolute; bottom: 0; left: 0; width: 100%; background: rgba(0,0,0,0.5); backdrop-filter: blur(5px); color: #FFF; display: flex; justify-content: space-between; align-items: center;">
                         <span>Twisted Bouquet</span>
                         <span class="badge badge-intermediate">Intermediate</span>
                     </div>
@@ -288,7 +416,53 @@
             </div>
         </div>
     </section>
+    <!-- Stats Section -->
+    <section style="background-color: var(--color-surface);">
+        <div class="container">
 
+            <span class="section-subtitle">By The Numbers</span>
+            <h2 class="section-title">TwistCraft In Figures</h2>
+            <p class="section-desc" style="margin-bottom: var(--s-48);">Over a decade of turning air and latex into
+                unforgettable moments.</p>
+
+            <div class="stats-grid">
+
+                <!-- Stat 1 -->
+                <div class="stat-card">
+                    <span
+                        style="font-family: var(--font-display); font-size: clamp(2rem, 4vw, 3.5rem); font-weight: 900; color: var(--color-primary); line-height: 1; display: block;">500+</span>
+                    <span
+                        style="font-family: var(--font-accent); font-size: 1.4rem; color: var(--color-text-muted); display: block; margin-top: var(--s-8);">Unique
+                        Designs</span>
+                    <p style="font-size: 0.9rem; margin-top: var(--s-16); color: var(--color-text-muted);">From tiny
+                        ladybugs to life-sized characters, our repertoire never stops growing.</p>
+                </div>
+
+                <!-- Stat 2 -->
+                <div class="stat-card stat-card-featured">
+                    <span
+                        style="font-family: var(--font-display); font-size: clamp(2rem, 4vw, 3.5rem); font-weight: 900; color: #FFF; line-height: 1; display: block;">1,200+</span>
+                    <span
+                        style="font-family: var(--font-accent); font-size: 1.4rem; color: rgba(255,255,255,0.8); display: block; margin-top: var(--s-8);">Events
+                        Delivered</span>
+                    <p style="font-size: 0.9rem; margin-top: var(--s-16); color: rgba(255,255,255,0.7);">Birthdays,
+                        galas, weddings, and brand activations across the country.</p>
+                </div>
+
+                <!-- Stat 3 -->
+                <div class="stat-card">
+                    <span
+                        style="font-family: var(--font-display); font-size: clamp(2rem, 4vw, 3.5rem); font-weight: 900; color: var(--color-primary); line-height: 1; display: block;">15+</span>
+                    <span
+                        style="font-family: var(--font-accent); font-size: 1.4rem; color: var(--color-text-muted); display: block; margin-top: var(--s-8);">Years
+                        of Artistry</span>
+                    <p style="font-size: 0.9rem; margin-top: var(--s-16); color: var(--color-text-muted);">A decade and
+                        a half of perfecting the craft at the highest level.</p>
+                </div>
+
+            </div>
+        </div>
+    </section>
     <!-- Event Packages Overview -->
     <section class="packages-overview" style="background-color: var(--color-surface);">
         <div class="container">
@@ -296,110 +470,175 @@
             <h2 class="section-title">Event Packages</h2>
             <p class="section-desc">Tailored entertainment experiences for every occasion.</p>
 
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: var(--s-32);">
+            <div class="packages-grid">
                 <!-- Package 1 -->
-                <div class="card">
-                    <i class="ph ph-cake" style="font-size: 3rem; color: var(--color-primary); margin-bottom: var(--s-24);"></i>
-                    <h3 style="margin-bottom: var(--s-16);">Birthday Bash</h3>
-                    <p style="margin-bottom: var(--s-24); font-size: 0.95rem;">Interactive twisting, custom birthday crown, and animal favorites for all guests.</p>
-                    <span style="font-size: 1.5rem; font-weight: 800; margin-bottom: var(--s-32);">From $250</span>
-                    <a href="packages.html" class="btn btn-primary" style="width: 100%;">View Details</a>
+                <div class="card" style="justify-content: space-between;">
+                    <div
+                        style="width: 100%; height: 200px; border-radius: 14px; overflow: hidden; margin-bottom: var(--s-24);">
+                        <img src="assets/images/pkg-birthday.jpg" alt="Birthday Bash"
+                            style="width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.4s ease;">
+                    </div>
+                    <div style="flex: 1; display: flex; flex-direction: column;">
+                        <h3 style="margin-bottom: var(--s-16);">Birthday Bash</h3>
+                        <p style="margin-bottom: var(--s-24); font-size: 0.95rem; flex: 1;">Interactive twisting, custom
+                            birthday crown, and animal favorites for all guests.</p>
+                        <span
+                            style="font-size: 1.5rem; font-weight: 800; margin-bottom: var(--s-24); display: block;">From
+                            $250</span>
+                        <a href="packages.html" class="btn btn-primary" style="width: 100%;">View Details</a>
+                    </div>
                 </div>
                 <!-- Package 2 -->
-                <div class="card" style="border: 2px solid var(--color-primary);">
-                    <i class="ph ph-buildings" style="font-size: 3rem; color: var(--color-primary); margin-bottom: var(--s-24);"></i>
-                    <h3 style="margin-bottom: var(--s-16);">Corporate Gala</h3>
-                    <p style="margin-bottom: var(--s-24); font-size: 0.95rem;">High-speed twisting, brand-colored sculptures, and ambient entertainment for large crowds.</p>
-                    <span style="font-size: 1.5rem; font-weight: 800; margin-bottom: var(--s-32);">From $600</span>
-                    <a href="packages.html" class="btn btn-primary" style="width: 100%;">View Details</a>
+                <div class="card" style="border: 2px solid var(--color-primary); justify-content: space-between;">
+                    <div
+                        style="width: 100%; height: 200px; border-radius: 14px; overflow: hidden; margin-bottom: var(--s-24);">
+                        <img src="assets/images/pkg-corporate.jpg" alt="Corporate Gala"
+                            style="width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.4s ease;">
+                    </div>
+                    <div style="flex: 1; display: flex; flex-direction: column;">
+                        <h3 style="margin-bottom: var(--s-16);">Corporate Gala</h3>
+                        <p style="margin-bottom: var(--s-24); font-size: 0.95rem; flex: 1;">High-speed twisting,
+                            brand-colored sculptures, and ambient entertainment for large crowds.</p>
+                        <span
+                            style="font-size: 1.5rem; font-weight: 800; margin-bottom: var(--s-24); display: block;">From
+                            $600</span>
+                        <a href="packages.html" class="btn btn-primary" style="width: 100%;">View Details</a>
+                    </div>
                 </div>
                 <!-- Package 3 -->
-                <div class="card">
-                    <i class="ph ph-heart" style="font-size: 3rem; color: var(--color-primary); margin-bottom: var(--s-24);"></i>
-                    <h3 style="margin-bottom: var(--s-16);">Dream Wedding</h3>
-                    <p style="margin-bottom: var(--s-24); font-size: 0.95rem;">Elegant balloon décor, photo booth accents, and sophisticated twisting for cocktail hour.</p>
-                    <span style="font-size: 1.5rem; font-weight: 800; margin-bottom: var(--s-32);">From $800</span>
-                    <a href="packages.html" class="btn btn-primary" style="width: 100%;">View Details</a>
+                <div class="card" style="justify-content: space-between;">
+                    <div
+                        style="width: 100%; height: 200px; border-radius: 14px; overflow: hidden; margin-bottom: var(--s-24);">
+                        <img src="assets/images/pkg-wedding.jpg" alt="Dream Wedding"
+                            style="width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.4s ease;">
+                    </div>
+                    <div style="flex: 1; display: flex; flex-direction: column;">
+                        <h3 style="margin-bottom: var(--s-16);">Dream Wedding</h3>
+                        <p style="margin-bottom: var(--s-24); font-size: 0.95rem; flex: 1;">Elegant balloon décor, photo
+                            booth accents, and sophisticated twisting for cocktail hour.</p>
+                        <span
+                            style="font-size: 1.5rem; font-weight: 800; margin-bottom: var(--s-24); display: block;">From
+                            $800</span>
+                        <a href="packages.html" class="btn btn-primary" style="width: 100%;">View Details</a>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Why TwistCraft -->
+    <!-- How It Works -->
     <section class="features">
         <div class="container">
             <span class="section-subtitle">The Difference</span>
-            <h2 class="section-title">Why TwistCraft?</h2>
-            <p class="section-desc">We don't just blow up balloons; we create memories that last long after the party ends.</p>
+            <h2 class="section-title">How It Works</h2>
+            <p class="section-desc">Booking world-class balloon artistry for your event is easier than you think.</p>
 
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: var(--s-48);">
-                <div style="text-align: center;">
-                    <i class="ph ph-certificate" style="font-size: 2.5rem; color: var(--color-accent); margin-bottom: var(--s-16);"></i>
-                    <h4 style="margin-bottom: var(--s-12);">Certified Artists</h4>
-                    <p style="font-size: 0.9rem;">Trained professionals with years of experience in high-end artistry.</p>
+            <div
+                style="display: grid; grid-template-columns: 1fr 1fr; gap: var(--s-96); align-items: center; margin-top: var(--s-64);">
+
+                <!-- Left: Image -->
+                <div style="position: relative;">
+                    <img src="assets/images/steps-artist.jpg" alt="TwistCraft artist at work"
+                        style="width: 100%; height: 500px; object-fit: cover; border-radius: 32px; display: block;">
+                    <!-- Decorative accent -->
+                    <div
+                        style="position: absolute; bottom: -20px; right: -20px; width: 160px; height: 160px; background: var(--color-primary); border-radius: 50%; opacity: 0.12; z-index: -1;">
+                    </div>
+                    <div
+                        style="position: absolute; top: -20px; left: -20px; width: 100px; height: 100px; background: var(--color-secondary); border-radius: 50%; opacity: 0.15; z-index: -1;">
+                    </div>
                 </div>
-                <div style="text-align: center;">
-                    <i class="ph ph-palette" style="font-size: 2.5rem; color: var(--color-secondary); margin-bottom: var(--s-16);"></i>
-                    <h4 style="margin-bottom: var(--s-12);">500+ Designs</h4>
-                    <p style="font-size: 0.9rem;">From tiny ladybugs to life-sized characters, our repertoire is endless.</p>
-                </div>
-                <div style="text-align: center;">
-                    <i class="ph ph-calendar-check" style="font-size: 2.5rem; color: var(--color-primary); margin-bottom: var(--s-16);"></i>
-                    <h4 style="margin-bottom: var(--s-12);">Same-Day Booking</h4>
-                    <p style="font-size: 0.9rem;">Last minute celebration? Check our real-time availability online.</p>
-                </div>
-                <div style="text-align: center;">
-                    <i class="ph ph-magic-wand" style="font-size: 2.5rem; color: var(--color-accent); margin-bottom: var(--s-16);"></i>
-                    <h4 style="margin-bottom: var(--s-12);">Custom Sculptures</h4>
-                    <p style="font-size: 0.9rem;">Have a specific theme? We design custom pieces tailored to you.</p>
-                </div>
-                <div style="text-align: center;">
-                    <i class="ph ph-map-trifold" style="font-size: 2.5rem; color: var(--color-secondary); margin-bottom: var(--s-16);"></i>
-                    <h4 style="margin-bottom: var(--s-12);">Nationwide Service</h4>
-                    <p style="font-size: 0.9rem;">Our team travels across the country for large-scale activations.</p>
-                </div>
-                <div style="text-align: center;">
-                    <i class="ph ph-graduation-cap" style="font-size: 2.5rem; color: var(--color-primary); margin-bottom: var(--s-16);"></i>
-                    <h4 style="margin-bottom: var(--s-12);">Workshop Trained</h4>
-                    <p style="font-size: 0.9rem;">We also teach! Our artists are instructors in the twisting community.</p>
+
+                <!-- Right: Steps -->
+                <div style="display: flex; flex-direction: column; gap: var(--s-48);">
+
+                    <!-- Step 1 -->
+                    <div style="display: flex; gap: var(--s-24); align-items: flex-start;">
+                        <div
+                            style="flex-shrink: 0; width: 64px; height: 64px; border-radius: 50%; background: var(--color-primary); color: #FFF; display: flex; align-items: center; justify-content: center; font-family: var(--font-display); font-size: 1.8rem; font-weight: 900;">
+                            1</div>
+                        <div>
+                            <h4 style="text-align: left; margin-bottom: 8px; font-size: 1.2rem;">Choose Your Package
+                            </h4>
+                            <p style="text-align: left; margin: 0; font-size: 0.95rem; color: var(--color-text-muted);">
+                                Browse our curated tiers — from intimate birthday parties to large-scale corporate galas
+                                — and pick the experience that fits your event.</p>
+                        </div>
+                    </div>
+
+                    <!-- Connector line -->
+                    <div
+                        style="width: 2px; height: 32px; background: var(--color-border); margin-left: 31px; margin-top: calc(-1 * var(--s-32)); margin-bottom: calc(-1 * var(--s-32));">
+                    </div>
+
+                    <!-- Step 2 -->
+                    <div style="display: flex; gap: var(--s-24); align-items: flex-start;">
+                        <div
+                            style="flex-shrink: 0; width: 64px; height: 64px; border-radius: 50%; background: var(--color-primary); color: #FFF; display: flex; align-items: center; justify-content: center; font-family: var(--font-display); font-size: 1.8rem; font-weight: 900;">
+                            2</div>
+                        <div>
+                            <h4 style="text-align: left; margin-bottom: 8px; font-size: 1.2rem;">Book Your Date Online
+                            </h4>
+                            <p style="text-align: left; margin: 0; font-size: 0.95rem; color: var(--color-text-muted);">
+                                Use our simple booking form to lock in your event date, share your venue details, and
+                                add any custom requests or special themes.</p>
+                        </div>
+                    </div>
+
+                    <!-- Connector line -->
+                    <div
+                        style="width: 2px; height: 32px; background: var(--color-border); margin-left: 31px; margin-top: calc(-1 * var(--s-32)); margin-bottom: calc(-1 * var(--s-32));">
+                    </div>
+
+                    <!-- Step 3 -->
+                    <div style="display: flex; gap: var(--s-24); align-items: flex-start;">
+                        <div
+                            style="flex-shrink: 0; width: 64px; height: 64px; border-radius: 50%; background: var(--color-primary); color: #FFF; display: flex; align-items: center; justify-content: center; font-family: var(--font-display); font-size: 1.8rem; font-weight: 900;">
+                            3</div>
+                        <div>
+                            <h4 style="text-align: left; margin-bottom: 8px; font-size: 1.2rem;">We Twist, You Celebrate
+                            </h4>
+                            <p style="text-align: left; margin: 0; font-size: 0.95rem; color: var(--color-text-muted);">
+                                Our certified artists arrive on time, set up, and deliver a show-stopping performance
+                                your guests will talk about for years.</p>
+                        </div>
+                    </div>
+
                 </div>
             </div>
         </div>
     </section>
-
     <!-- Testimonials -->
     <section class="testimonials" style="background-color: var(--color-surface); overflow: hidden;">
         <div class="container">
             <span class="section-subtitle">Kind Words</span>
             <h2 class="section-title">Client Stories</h2>
-            
-            <div class="testimonials-track">
+
+            <div class="testimonials-grid">
                 <!-- Testimonial 1 -->
-                <div class="card testimonial-card">
+                <div class="card testimonial-card animate-up">
+                    <img src="assets/images/user-sarah.png" alt="Sarah" class="testimonial-user">
                     <div style="display: flex; gap: 5px; margin-bottom: var(--s-16); color: var(--color-secondary);">
-                        <i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i>
+                        <i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i
+                            class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i>
                     </div>
-                    <p style="font-style: italic; margin-bottom: var(--s-24);">"Absolutely mind-blowing! The artists at TwistCraft didn't just make balloons; they performed magic. Our wedding guests were mesmerized."</p>
+                    <p style="font-style: italic; margin-bottom: var(--s-24);">"Absolutely mind-blowing! The artists at
+                        TwistCraft didn't just make balloons; they performed magic. Our guests mesmerized."
+                    </p>
                     <h5 style="font-family: var(--font-body); font-weight: 700;">Sarah & James</h5>
                     <span style="font-size: 0.85rem; color: var(--color-text-muted);">Wedding Event</span>
                 </div>
                 <!-- Testimonial 2 -->
-                <div class="card testimonial-card">
+                <div class="card testimonial-card animate-up" style="animation-delay: 0.2s;">
+                    <img src="assets/images/user-techcorp.png" alt="Corporate Client" class="testimonial-user">
                     <div style="display: flex; gap: 5px; margin-bottom: var(--s-16); color: var(--color-secondary);">
-                        <i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i>
+                        <i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i
+                            class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i>
                     </div>
-                    <p style="font-style: italic; margin-bottom: var(--s-24);">"The highlight of our corporate brand activation. They managed to twist our company logo in under 2 minutes! Remarkable talent."</p>
+                    <p style="font-style: italic; margin-bottom: var(--s-24);">"The highlight of our corporate brand
+                        activation. They managed to twist our company logo in under 2 minutes! Remarkable."</p>
                     <h5 style="font-family: var(--font-body); font-weight: 700;">TechCorp Global</h5>
                     <span style="font-size: 0.85rem; color: var(--color-text-muted);">Corporate Event</span>
-                </div>
-                <!-- Testimonial 3 -->
-                <div class="card testimonial-card">
-                    <div style="display: flex; gap: 5px; margin-bottom: var(--s-16); color: var(--color-secondary);">
-                        <i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i>
-                    </div>
-                    <p style="font-style: italic; margin-bottom: var(--s-24);">"My daughter's 5th birthday was a dream. The balloon crown was the talk of the school for weeks. Highly professional service."</p>
-                    <h5 style="font-family: var(--font-body); font-weight: 700;">The Miller Family</h5>
-                    <span style="font-size: 0.85rem; color: var(--color-text-muted);">Birthday Party</span>
                 </div>
             </div>
         </div>
@@ -430,7 +669,7 @@
                     <a href="#" class="icon-btn"><i class="ph ph-youtube-logo"></i></a>
                 </div>
             </div>
-            
+
             <div class="footer-col">
                 <h4>Quick Links</h4>
                 <div class="footer-links">
@@ -482,4 +721,5 @@
 
     <script src="assets/js/main.js"></script>
 </body>
+
 </html>

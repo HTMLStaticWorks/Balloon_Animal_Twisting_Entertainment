@@ -1,167 +1,404 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TwistTalk Blog — Balloon Tips & News</title>
-    
+
     <!-- Icons -->
     <script src="https://unpkg.com/@phosphor-icons/web@2.1.1"></script>
-    
+
     <!-- Styles -->
     <link rel="stylesheet" href="assets/css/style.css">
     <link rel="stylesheet" href="assets/css/rtl.css">
-    
+
     <style>
-        .blog-hero { padding: var(--s-128) 0 var(--s-64); background: var(--color-surface); text-align: center; }
-        .blog-grid { display: grid; grid-template-columns: 2fr 1fr; gap: var(--s-48); margin-top: var(--s-64); }
-        .blog-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: var(--s-32); }
-        
-        .blog-card { background: var(--color-bg); border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow); transition: var(--transition); border: 1px solid var(--color-border); }
-        .blog-card:hover { transform: translateY(-5px); }
-        .blog-card-img { height: 200px; background-size: cover; background-position: center; position: relative; }
-        .blog-category { position: absolute; top: 15px; left: 15px; background: var(--color-primary); color: #FFF; padding: 4px 12px; border-radius: 50px; font-size: 0.75rem; font-weight: 700; }
-        .blog-card-content { padding: var(--s-24); text-align: left; }
-        .blog-card-content h3 { text-align: left; margin-bottom: 15px; font-size: 1.3rem; }
-        .blog-card-content p { text-align: left; margin: 0 0 20px 0; font-size: 0.9rem; color: var(--color-text-muted); }
-        .blog-meta { display: flex; justify-content: space-between; font-size: 0.8rem; color: var(--color-text-muted); border-top: 1px solid var(--color-border); padding-top: 15px; }
+        .blog-hero {
+            padding: var(--s-128) 0 var(--s-64);
+            background: var(--color-surface);
+            text-align: center;
+        }
 
-        .sidebar-widget { background: var(--color-surface); padding: var(--s-32); border-radius: var(--radius); margin-bottom: var(--s-32); }
-        .sidebar-widget h4 { text-align: left; margin-bottom: 20px; font-family: var(--font-body); font-weight: 800; border-bottom: 2px solid var(--color-primary); display: inline-block; }
-        .widget-list li { margin-bottom: 10px; display: flex; justify-content: space-between; }
+        .blog-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: var(--s-48);
+            margin-top: var(--s-64);
+        }
 
-        @media (max-width: 1024px) {
-            .blog-grid { grid-template-columns: 1fr; }
-            .sidebar { order: -1; }
+        .blog-filters {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: var(--s-32);
+            margin-bottom: var(--s-64);
+        }
+
+        .blog-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: var(--s-32);
+        }
+
+        .blog-card {
+            background: var(--color-bg);
+            border-radius: var(--radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            border: 1px solid var(--color-border);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .blog-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .blog-card-img {
+            height: 240px;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+
+        .blog-category {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background: var(--color-primary);
+            color: #FFF;
+            padding: 6px 16px;
+            border-radius: 50px;
+            font-size: 0.75rem;
+            font-weight: 700;
+        }
+
+        .blog-card-content {
+            padding: var(--s-32);
+            text-align: left;
+        }
+
+        .blog-card-content h3 {
+            text-align: left;
+            margin-bottom: 15px;
+            font-size: 1.4rem;
+        }
+
+        .blog-card-content p {
+            text-align: left;
+            margin: 0 0 25px 0;
+            font-size: 0.95rem;
+            line-height: 1.6;
+            color: var(--color-text-muted);
+        }
+
+        .blog-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.85rem;
+            color: var(--color-text-muted);
+            border-top: 1px solid var(--color-border);
+            padding-top: 20px;
+        }
+
+        .read-more {
+            color: var(--color-primary);
+            font-weight: 700;
+            transition: var(--transition);
+        }
+
+        .read-more:hover {
+            letter-spacing: 0.5px;
+            text-decoration: underline;
+            opacity: 0.8;
+        }
+
+        .filter-widget {
+            background: var(--color-surface);
+            padding: var(--s-24);
+            border-radius: var(--radius);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        .filter-widget h4 {
+            text-align: center;
+            margin-bottom: 20px;
+            font-family: var(--font-body);
+            font-weight: 800;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--color-primary);
+        }
+
+        .widget-list {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            list-style: none;
+        }
+
+        .widget-list li {
+            font-size: 0.95rem;
+        }
+
+        .widget-list li a {
+            color: var(--color-text);
+            font-weight: 600;
+            transition: var(--transition);
+        }
+
+        .widget-list li a:hover {
+            color: var(--color-primary);
+        }
+
+        .widget-list li span {
+            color: var(--color-text-muted);
+            font-weight: 400;
+            margin-left: 4px;
+        }
+
+        .hashtag {
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: var(--color-text);
+            transition: var(--transition);
+        }
+
+        .hashtag:hover {
+            color: var(--color-primary);
+            transform: scale(1.05);
+        }
+
+        @media (max-width: 768px) {
+            .blog-filters {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
 </head>
+
 <body>
 
-    <nav class="navbar scrolled">
+    <!-- Navbar -->
+    <nav class="navbar">
         <div class="container nav-container">
-            <a href="index.html" class="logo"><span class="logo-icon"></span>TwistCraft</a>
+            <a href="index.html" class="logo">
+                <span class="logo-icon"></span>
+                TwistCraft
+            </a>
+
             <div class="nav-links">
                 <a href="index.html" class="nav-link">Home</a>
+                <a href="home2.html" class="nav-link">Home 2</a>
                 <a href="gallery.html" class="nav-link">Gallery</a>
                 <a href="services.html" class="nav-link">Services</a>
                 <a href="packages.html" class="nav-link">Packages</a>
-                <a href="blog.html" class="nav-link active">Blog</a>
+                <a href="workshops.html" class="nav-link">Workshops</a>
+                <a href="blog.html" class="nav-link">Blog</a>
                 <a href="contact.html" class="nav-link">Contact</a>
             </div>
+
             <div class="nav-actions">
-                <button class="icon-btn" id="rtl-toggle"><i class="ph ph-arrows-left-right"></i></button>
-                <button class="icon-btn" id="theme-toggle"><i class="ph ph-moon"></i></button>
-                <a href="booking.html" class="nav-cta">Book Now</a>
-                <button class="icon-btn hamburger" id="hamburger"><i class="ph ph-list"></i></button>
+                <button class="icon-btn" id="rtl-toggle" aria-label="Toggle RTL">
+                    <i class="ph ph-arrows-left-right"></i>
+                </button>
+                <button class="icon-btn" id="theme-toggle" aria-label="Toggle Theme">
+                    <i class="ph ph-moon"></i>
+                </button>
+                <a href="login.html" class="nav-cta">Login</a>
+                <button class="icon-btn hamburger" id="hamburger" aria-label="Open Menu">
+                    <i class="ph ph-list"></i>
+                </button>
             </div>
         </div>
     </nav>
+
+    <!-- Mobile Drawer -->
+    <div class="drawer-overlay" id="drawer-overlay"></div>
+    <div class="drawer" id="drawer">
+        <div class="drawer-header">
+            <a href="index.html" class="logo">
+                <span class="logo-icon"></span>
+                TwistCraft
+            </a>
+            <button class="icon-btn" id="drawer-close">
+                <i class="ph ph-x"></i>
+            </button>
+        </div>
+        <div class="drawer-links">
+            <a href="index.html" class="drawer-link">Home</a>
+            <a href="home2.html" class="drawer-link">Home 2</a>
+            <a href="gallery.html" class="drawer-link">Gallery</a>
+            <a href="services.html" class="drawer-link">Services</a>
+            <a href="packages.html" class="drawer-link">Packages</a>
+            <a href="workshops.html" class="drawer-link">Workshops</a>
+            <a href="blog.html" class="drawer-link">Blog</a>
+            <a href="contact.html" class="drawer-link">Contact</a>
+            <a href="login.html" class="btn btn-primary" style="width: 100%;">Login</a>
+        </div>
+        <div class="drawer-footer">
+            <button class="icon-btn" id="drawer-theme-toggle">
+                <i class="ph ph-moon"></i> Theme
+            </button>
+            <button class="icon-btn" id="drawer-rtl-toggle">
+                <i class="ph ph-arrows-left-right"></i> RTL Support
+            </button>
+        </div>
+    </div>
 
     <header class="blog-hero">
         <div class="container">
             <span class="section-subtitle">TwistTalk</span>
             <h1 class="section-title">The Balloon Blog</h1>
-            <p class="section-desc">Insights, event tips, and tutorials from the world of professional balloon artistry.</p>
+            <p class="section-desc">Insights, event tips, and tutorials from the world of professional balloon artistry.
+            </p>
         </div>
     </header>
 
     <section class="container">
         <div class="blog-grid">
             <div class="blog-main">
-                <div class="blog-cards">
-                    <!-- Post 1 -->
-                    <article class="blog-card">
-                        <div class="blog-card-img" style="background-image: url('https://images.unsplash.com/photo-1530103862676-fa392231fa3c?q=80&w=600');">
-                            <span class="blog-category">Events</span>
-                        </div>
-                        <div class="blog-card-content">
-                            <h3>5 Ways Balloons Can Transform Your Corporate Gala</h3>
-                            <p>Discover how professional balloon installations can elevate your brand activation and leave a lasting impression on guests.</p>
-                            <div class="blog-meta">
-                                <span><i class="ph ph-calendar"></i> May 10, 2026</span>
-                                <a href="blog-single.html" style="color: var(--color-primary); font-weight: 700;">Read More</a>
-                            </div>
-                        </div>
-                    </article>
-                    <!-- Post 2 -->
-                    <article class="blog-card">
-                        <div class="blog-card-img" style="background-image: url('https://images.unsplash.com/photo-1525268771113-32d9e9021a97?q=80&w=600');">
-                            <span class="blog-category">Tips</span>
-                        </div>
-                        <div class="blog-card-content">
-                            <h3>Choosing the Right Colors for Your Balloon Arch</h3>
-                            <p>A guide to color theory and palette selection to ensure your balloon décor matches your event theme perfectly.</p>
-                            <div class="blog-meta">
-                                <span><i class="ph ph-calendar"></i> May 05, 2026</span>
-                                <a href="blog-single.html" style="color: var(--color-primary); font-weight: 700;">Read More</a>
-                            </div>
-                        </div>
-                    </article>
-                    <!-- Post 3 -->
-                    <article class="blog-card">
-                        <div class="blog-card-img" style="background-image: url('https://images.unsplash.com/photo-1473111583972-e160124697d8?q=80&w=600');">
-                            <span class="blog-category">Tutorials</span>
-                        </div>
-                        <div class="blog-card-content">
-                            <h3>DIY Balloon Animals: A Beginner's Safety Guide</h3>
-                            <p>Learn the basics of balloon safety, handling, and the two fundamental twists every aspiring artist should know.</p>
-                            <div class="blog-meta">
-                                <span><i class="ph ph-calendar"></i> April 28, 2026</span>
-                                <a href="blog-single.html" style="color: var(--color-primary); font-weight: 700;">Read More</a>
-                            </div>
-                        </div>
-                    </article>
-                    <!-- Post 4 -->
-                    <article class="blog-card">
-                        <div class="blog-card-img" style="background-image: url('https://images.unsplash.com/photo-1533777857889-4be7c70b33f7?q=80&w=600');">
-                            <span class="blog-category">News</span>
-                        </div>
-                        <div class="blog-card-content">
-                            <h3>The Future of Sustainable Balloon Artistry</h3>
-                            <p>How the industry is evolving with biodegradable materials and eco-friendly practices for modern celebrations.</p>
-                            <div class="blog-meta">
-                                <span><i class="ph ph-calendar"></i> April 20, 2026</span>
-                                <a href="blog-single.html" style="color: var(--color-primary); font-weight: 700;">Read More</a>
-                            </div>
-                        </div>
-                    </article>
-                </div>
-            </div>
+                <!-- Top Filters/Widgets -->
+                <div class="blog-filters">
+                    <div class="filter-widget">
+                        <h4>Search</h4>
+                        <form style="display: flex; gap: 10px;">
+                            <input type="text" placeholder="Search articles..."
+                                style="flex: 1; padding: 12px 15px; border-radius: var(--radius); border: 1px solid var(--color-border); background: var(--color-bg); font-size: 0.9rem;">
+                            <button type="button" class="btn btn-primary" style="padding: 10px 15px;"><i
+                                    class="ph ph-magnifying-glass"></i></button>
+                        </form>
+                    </div>
 
-            <aside class="sidebar">
-                <div class="sidebar-widget">
-                    <h4>Search Blog</h4>
-                    <form style="display: flex; gap: 10px; margin-top: 10px;">
-                        <input type="text" placeholder="Search..." style="flex: 1; padding: 10px; border-radius: var(--radius); border: 1px solid var(--color-border); background: var(--color-bg);">
-                        <button type="button" class="btn btn-primary" style="padding: 10px;"><i class="ph ph-magnifying-glass"></i></button>
-                    </form>
-                </div>
+                    <div class="filter-widget">
+                        <h4>Categories</h4>
+                        <ul class="widget-list">
+                            <li><a href="#">Events</a><span>(12)</span></li>
+                            <li><a href="#">Tips</a><span>(8)</span></li>
+                            <li><a href="#">Tutorials</a><span>(5)</span></li>
+                            <li><a href="#">News</a><span>(3)</span></li>
+                        </ul>
+                    </div>
 
-                <div class="sidebar-widget">
-                    <h4>Categories</h4>
-                    <ul class="widget-list">
-                        <li><a href="#">Events</a> <span>(12)</span></li>
-                        <li><a href="#">Tips</a> <span>(8)</span></li>
-                        <li><a href="#">Tutorials</a> <span>(5)</span></li>
-                        <li><a href="#">News</a> <span>(3)</span></li>
-                    </ul>
-                </div>
-
-                <div class="sidebar-widget">
-                    <h4>Recent Posts</h4>
-                    <div style="display: flex; flex-direction: column; gap: 15px;">
-                        <a href="#" style="display: flex; gap: 10px; font-size: 0.9rem;">
-                            <img src="https://images.unsplash.com/photo-1530103862676-fa392231fa3c?q=80&w=100" style="width: 50px; height: 50px; border-radius: 10px; object-fit: cover;">
-                            <span>Balloon Walls 101: Everything You Need to Know</span>
-                        </a>
-                        <a href="#" style="display: flex; gap: 10px; font-size: 0.9rem;">
-                            <img src="https://images.unsplash.com/photo-1525268771113-32d9e9021a97?q=80&w=100" style="width: 50px; height: 50px; border-radius: 10px; object-fit: cover;">
-                            <span>The Best Themes for Kids' Birthdays in 2026</span>
-                        </a>
+                    <div class="filter-widget">
+                        <h4>Featured Topics</h4>
+                        <div style="display: flex; gap: 20px; flex-wrap: wrap; justify-content: center;">
+                            <a href="#" class="hashtag">#SustainableArt</a>
+                            <a href="#" class="hashtag">#EventDesign</a>
+                            <a href="#" class="hashtag">#Tutorials</a>
+                        </div>
                     </div>
                 </div>
-            </aside>
+
+                <!-- Blog Cards Grid -->
+                <div class="blog-cards">
+
+                    <!-- Post 1 -->
+                    <article class="blog-card">
+                        <div class="blog-card-img" style="background-image: url('assets/images/blog-corporate.jpg');">
+                            <span class="blog-category">Events</span>
+                        </div>
+                        <div class="blog-card-content" style="display: flex; flex-direction: column; flex: 1;">
+                            <h3>5 Ways Balloons Can Transform Your Corporate Gala</h3>
+                            <p style="flex: 1;">Discover how professional balloon installations can elevate your brand
+                                activation and leave a lasting impression on guests.</p>
+                            <div class="blog-meta">
+                                <span><i class="ph ph-calendar"></i> May 10, 2026</span>
+                                <a href="blog-single.html" class="read-more">Read More</a>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Post 2 -->
+                    <article class="blog-card">
+                        <div class="blog-card-img" style="background-image: url('assets/images/blog-colors.jpg');">
+                            <span class="blog-category">Tips</span>
+                        </div>
+                        <div class="blog-card-content" style="display: flex; flex-direction: column; flex: 1;">
+                            <h3>Choosing the Right Colors for Your Balloon Arch</h3>
+                            <p style="flex: 1;">A guide to color theory and palette selection to ensure your balloon
+                                décor matches your event theme perfectly.</p>
+                            <div class="blog-meta">
+                                <span><i class="ph ph-calendar"></i> May 05, 2026</span>
+                                <a href="blog-single.html" class="read-more">Read More</a>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Post 3 -->
+                    <article class="blog-card">
+                        <div class="blog-card-img" style="background-image: url('assets/images/blog-diy.jpg');">
+                            <span class="blog-category">Tutorials</span>
+                        </div>
+                        <div class="blog-card-content" style="display: flex; flex-direction: column; flex: 1;">
+                            <h3>DIY Balloon Animals: A Beginner's Safety Guide</h3>
+                            <p style="flex: 1;">Learn the basics of balloon safety, handling, and the two fundamental
+                                twists every aspiring artist should know.</p>
+                            <div class="blog-meta">
+                                <span><i class="ph ph-calendar"></i> April 28, 2026</span>
+                                <a href="blog-single.html" class="read-more">Read More</a>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Post 4 -->
+                    <article class="blog-card">
+                        <div class="blog-card-img" style="background-image: url('assets/images/blog-sustainable.jpg');">
+                            <span class="blog-category">News</span>
+                        </div>
+                        <div class="blog-card-content" style="display: flex; flex-direction: column; flex: 1;">
+                            <h3>The Future of Sustainable Balloon Artistry</h3>
+                            <p style="flex: 1;">How the industry is evolving with biodegradable materials and
+                                eco-friendly practices for modern celebrations.</p>
+                            <div class="blog-meta">
+                                <span><i class="ph ph-calendar"></i> April 20, 2026</span>
+                                <a href="blog-single.html" class="read-more">Read More</a>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Post 5 -->
+                    <article class="blog-card">
+                        <div class="blog-card-img" style="background-image: url('assets/images/blog-walls.jpg');">
+                            <span class="blog-category">Events</span>
+                        </div>
+                        <div class="blog-card-content" style="display: flex; flex-direction: column; flex: 1;">
+                            <h3>Balloon Walls 101: Create a Showstopping Centerpiece</h3>
+                            <p style="flex: 1;">Everything you need to know about designing and installing massive
+                                balloon walls that serve as the perfect photo backdrop.</p>
+                            <div class="blog-meta">
+                                <span><i class="ph ph-calendar"></i> April 15, 2026</span>
+                                <a href="blog-single.html" class="read-more">Read More</a>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Post 6 -->
+                    <article class="blog-card">
+                        <div class="blog-card-img" style="background-image: url('assets/images/blog-kids.jpg');">
+                            <span class="blog-category">Tips</span>
+                        </div>
+                        <div class="blog-card-content" style="display: flex; flex-direction: column; flex: 1;">
+                            <h3>The Best Themes for Kids' Birthdays in 2026</h3>
+                            <p style="flex: 1;">From retro-space to enchanted forests, we explore the hottest trends in
+                                children's party themes for the upcoming year.</p>
+                            <div class="blog-meta">
+                                <span><i class="ph ph-calendar"></i> April 10, 2026</span>
+                                <a href="blog-single.html" style="color: var(--color-primary); font-weight: 700;">Read
+                                    More</a>
+                            </div>
+                        </div>
+                    </article>
+
+                </div>
+            </div>
         </div>
     </section>
 
@@ -177,4 +414,5 @@
 
     <script src="assets/js/main.js"></script>
 </body>
+
 </html>

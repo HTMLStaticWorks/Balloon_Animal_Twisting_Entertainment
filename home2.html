@@ -1,49 +1,147 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TwistCraft — Modern Balloon Experiences</title>
-    
+
     <!-- Icons -->
     <script src="https://unpkg.com/@phosphor-icons/web@2.1.1"></script>
-    
+
     <!-- Styles -->
     <link rel="stylesheet" href="assets/css/style.css">
     <link rel="stylesheet" href="assets/css/rtl.css">
-    
+
     <style>
         .hero-split {
             display: flex;
-            min-height: 100vh;
+            min-height: auto;
             align-items: center;
-            padding-top: 80px;
+            padding: 80px 0 40px 0;
+            background: linear-gradient(to bottom, var(--color-surface), var(--color-bg));
         }
+
         .hero-split-left {
             flex: 1;
-            padding: var(--s-64);
-            text-align: left;
+            padding: var(--s-16) var(--s-64);
+            text-align: center;
+            z-index: 2;
         }
+
         .hero-split-right {
             flex: 1;
-            height: 100vh;
-            background: url('https://images.unsplash.com/photo-1574027411210-53096238b13d?q=80&w=1200') center/cover no-repeat;
+            padding: var(--s-16) var(--s-64);
+            display: flex;
+            align-items: center;
+            justify-content: center;
             position: relative;
         }
-        .hero-split-left h1 { text-align: left; margin-bottom: var(--s-24); font-size: clamp(3rem, 6vw, 5rem); }
-        .hero-split-left p { text-align: left; margin: 0 0 var(--s-48) 0; font-size: 1.2rem; }
-        
+
+        .hero-split-image-container {
+            width: 100%;
+            max-width: 550px;
+            aspect-ratio: 4 / 5;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-split-image-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 40px;
+            box-shadow: 0 40px 80px rgba(0, 0, 0, 0.15);
+            border: 8px solid #FFF;
+        }
+
+        /* Decorative Background Element */
+        .hero-split-right::after {
+            content: '';
+            position: absolute;
+            width: 80%;
+            height: 80%;
+            background: var(--color-primary);
+            opacity: 0.05;
+            filter: blur(80px);
+            border-radius: 50%;
+            z-index: 0;
+        }
+
+        .hero-split-left h1 {
+            text-align: center;
+            margin-bottom: var(--s-24);
+            font-size: clamp(3rem, 6vw, 5rem);
+        }
+
+        .hero-split-left p {
+            text-align: center;
+            margin: 0 auto var(--s-48) auto;
+            font-size: 1.2rem;
+            max-width: 600px;
+        }
+
         .typewriter::after {
             content: '|';
             animation: blink 0.7s infinite;
         }
-        @keyframes blink { 50% { opacity: 0; } }
 
-        @media (max-width: 1024px) {
-            .hero-split { flex-direction: column; }
-            .hero-split-right { height: 50vh; width: 100%; order: -1; }
-            .hero-split-left { text-align: center; }
-            .hero-split-left h1, .hero-split-left p { text-align: center; margin-left: auto; margin-right: auto; }
+        @keyframes blink {
+            50% {
+                opacity: 0;
+            }
+        }
+
+        @media (max-width: 991px) {
+            .hero-split {
+                flex-direction: column;
+                min-height: auto;
+                padding-top: 120px;
+                padding-bottom: var(--s-64);
+            }
+
+            .hero-split-right {
+                width: 100%;
+                order: -1;
+                padding: var(--s-32);
+            }
+
+            .hero-split-image-container {
+                max-width: 400px;
+                aspect-ratio: 1 / 1;
+                /* Square on mobile */
+            }
+
+            .hero-split-left {
+                padding: var(--s-48) var(--s-32);
+            }
+        }
+
+        /* Artist Section Responsiveness */
+        .artist-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--s-96);
+            align-items: center;
+        }
+
+        @media (max-width: 767px) {
+            .artist-grid {
+                grid-template-columns: 1fr;
+                gap: var(--s-48);
+            }
+
+            .artist-image-col {
+                order: 2;
+            }
+
+            .artist-text-col {
+                order: 1;
+            }
+
+            .artist-image-col div[style*="height: 580px"] {
+                height: 400px !important;
+            }
         }
 
         .countdown-section {
@@ -52,18 +150,21 @@
             padding: var(--s-64) 0;
             text-align: center;
         }
+
         .countdown-grid {
             display: flex;
             justify-content: center;
             gap: var(--s-48);
             margin-top: var(--s-32);
         }
+
         .countdown-item span:first-child {
             font-size: 3.5rem;
             font-weight: 900;
             display: block;
             line-height: 1;
         }
+
         .countdown-item span:last-child {
             font-size: 0.9rem;
             text-transform: uppercase;
@@ -71,6 +172,7 @@
         }
     </style>
 </head>
+
 <body>
 
     <!-- Navbar -->
@@ -80,6 +182,7 @@
                 <span class="logo-icon"></span>
                 TwistCraft
             </a>
+
             <div class="nav-links">
                 <a href="index.html" class="nav-link">Home</a>
                 <a href="home2.html" class="nav-link">Home 2</a>
@@ -90,21 +193,33 @@
                 <a href="blog.html" class="nav-link">Blog</a>
                 <a href="contact.html" class="nav-link">Contact</a>
             </div>
+
             <div class="nav-actions">
-                <button class="icon-btn" id="rtl-toggle"><i class="ph ph-arrows-left-right"></i></button>
-                <button class="icon-btn" id="theme-toggle"><i class="ph ph-moon"></i></button>
-                <a href="booking.html" class="nav-cta">Book Now</a>
-                <button class="icon-btn hamburger" id="hamburger"><i class="ph ph-list"></i></button>
+                <button class="icon-btn" id="rtl-toggle" aria-label="Toggle RTL">
+                    <i class="ph ph-arrows-left-right"></i>
+                </button>
+                <button class="icon-btn" id="theme-toggle" aria-label="Toggle Theme">
+                    <i class="ph ph-moon"></i>
+                </button>
+                <a href="login.html" class="nav-cta">Login</a>
+                <button class="icon-btn hamburger" id="hamburger" aria-label="Open Menu">
+                    <i class="ph ph-list"></i>
+                </button>
             </div>
         </div>
     </nav>
 
-    <!-- Drawer placeholder for script compatibility -->
+    <!-- Mobile Drawer -->
     <div class="drawer-overlay" id="drawer-overlay"></div>
     <div class="drawer" id="drawer">
         <div class="drawer-header">
-            <a href="index.html" class="logo"><span class="logo-icon"></span>TwistCraft</a>
-            <button class="icon-btn" id="drawer-close"><i class="ph ph-x"></i></button>
+            <a href="index.html" class="logo">
+                <span class="logo-icon"></span>
+                TwistCraft
+            </a>
+            <button class="icon-btn" id="drawer-close">
+                <i class="ph ph-x"></i>
+            </button>
         </div>
         <div class="drawer-links">
             <a href="index.html" class="drawer-link">Home</a>
@@ -115,61 +230,455 @@
             <a href="workshops.html" class="drawer-link">Workshops</a>
             <a href="blog.html" class="drawer-link">Blog</a>
             <a href="contact.html" class="drawer-link">Contact</a>
-            <a href="booking.html" class="btn btn-primary" style="width: 100%;">Book Now</a>
+            <a href="login.html" class="btn btn-primary" style="width: 100%;">Login</a>
+        </div>
+        <div class="drawer-footer">
+            <button class="icon-btn" id="drawer-theme-toggle">
+                <i class="ph ph-moon"></i> Theme
+            </button>
+            <button class="icon-btn" id="drawer-rtl-toggle">
+                <i class="ph ph-arrows-left-right"></i> RTL Support
+            </button>
         </div>
     </div>
 
     <!-- Hero Split -->
     <header class="hero-split">
-        <div class="hero-split-left">
+        <div class="hero-split-left"
+            style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
             <span class="section-subtitle">Premium Artistry</span>
             <h1 id="typewriter-headline">Every Event Needs A </h1>
-            <p>From whimsical creatures to elegant décor, we bring the magic of high-end balloon art to your doorstep.</p>
-            <div style="display: flex; gap: var(--s-16);">
+            <p>From whimsical creatures to elegant décor, we bring the magic of high-end
+                balloon art to your doorstep.</p>
+            <div style="display: flex; gap: var(--s-16); justify-content: center;">
                 <a href="booking.html" class="btn btn-primary">Start Planning</a>
                 <a href="services.html" class="btn btn-outline">Our Services</a>
             </div>
         </div>
-        <div class="hero-split-right"></div>
+
+        <div class="hero-split-right">
+            <div class="hero-split-image-container">
+                <img src="assets/images/home2-hero.jpg" alt="TwistCraft balloon artist at a luxury event">
+            </div>
+        </div>
     </header>
+    <!-- Process: Before & After -->
+    <section style="background: var(--color-bg);">
+        <div class="container">
+            <span class="section-subtitle">The Process</span>
+            <h2 class="section-title">From Air To Art</h2>
+            <p class="section-desc">Every masterpiece starts with a simple balloon. Here's the magic in between.</p>
+
+            <div class="process-grid" style="margin-top: var(--s-64); align-items: start;">
+
+                <!-- Step 1 -->
+                <div
+                    style="background: var(--color-surface); border-radius: var(--radius); overflow: hidden; border: 1px solid var(--color-border); box-shadow: var(--shadow);">
+                    <div style="aspect-ratio: 4/3; overflow: hidden;">
+                        <img src="assets/images/process-raw.jpg" alt="Raw balloons"
+                            style="width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.5s ease;"
+                            onmouseover="this.style.transform='scale(1.05)'"
+                            onmouseout="this.style.transform='scale(1)'">
+                    </div>
+                    <div style="padding: var(--s-24); text-align: center;">
+                        <span
+                            style="display: inline-block; background: var(--color-primary); color: #FFF; font-family: var(--font-display); font-size: 0.85rem; font-weight: 900; letter-spacing: 2px; padding: 4px 16px; border-radius: 50px; margin-bottom: var(--s-16);">STEP
+                            1</span>
+                        <h4 style="font-size: 1.1rem; margin-bottom: 8px;">Raw Materials</h4>
+                        <p style="font-size: 0.88rem; color: var(--color-text-muted); margin: 0;">Premium latex
+                            balloons, hand-selected for quality and color vibrancy.</p>
+                    </div>
+                </div>
+
+                <!-- Step 2 -->
+                <div
+                    style="background: var(--color-surface); border-radius: var(--radius); overflow: hidden; border: 2px solid var(--color-primary); box-shadow: var(--shadow);">
+                    <div style="aspect-ratio: 4/3; overflow: hidden;">
+                        <img src="assets/images/process-artist.jpg" alt="Artist at work"
+                            style="width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.5s ease;"
+                            onmouseover="this.style.transform='scale(1.05)'"
+                            onmouseout="this.style.transform='scale(1)'">
+                    </div>
+                    <div style="padding: var(--s-24); text-align: center;">
+                        <span
+                            style="display: inline-block; background: var(--color-primary); color: #FFF; font-family: var(--font-display); font-size: 0.85rem; font-weight: 900; letter-spacing: 2px; padding: 4px 16px; border-radius: 50px; margin-bottom: var(--s-16);">STEP
+                            2</span>
+                        <h4 style="font-size: 1.1rem; margin-bottom: 8px;">The Craft in Motion</h4>
+                        <p style="font-size: 0.88rem; color: var(--color-text-muted); margin: 0;">Certified artists
+                            twist, lock, and shape with precision and speed.</p>
+                    </div>
+                </div>
+
+                <!-- Step 3 -->
+                <div
+                    style="background: var(--color-surface); border-radius: var(--radius); overflow: hidden; border: 1px solid var(--color-border); box-shadow: var(--shadow);">
+                    <div style="aspect-ratio: 4/3; overflow: hidden;">
+                        <img src="assets/images/process-final.jpg" alt="Finished sculpture"
+                            style="width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.5s ease;"
+                            onmouseover="this.style.transform='scale(1.05)'"
+                            onmouseout="this.style.transform='scale(1)'">
+                    </div>
+                    <div style="padding: var(--s-24); text-align: center;">
+                        <span
+                            style="display: inline-block; background: var(--color-primary); color: #FFF; font-family: var(--font-display); font-size: 0.85rem; font-weight: 900; letter-spacing: 2px; padding: 4px 16px; border-radius: 50px; margin-bottom: var(--s-16);">STEP
+                            3</span>
+                        <h4 style="font-size: 1.1rem; margin-bottom: 8px;">The Finished Masterpiece</h4>
+                        <p style="font-size: 0.88rem; color: var(--color-text-muted); margin: 0;">A one-of-a-kind
+                            sculpture your guests will remember forever.</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
 
     <!-- Packages First -->
     <section class="packages-overview">
         <div class="container">
             <span class="section-subtitle">Choose Your Experience</span>
             <h2 class="section-title">Popular Packages</h2>
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: var(--s-32);">
-                <div class="card">
-                    <h3>Starter Twister</h3>
-                    <p>Perfect for intimate gatherings.</p>
-                    <a href="packages.html" class="btn btn-primary">Book Now</a>
+            <div class="packages-grid">
+
+                <!-- Starter -->
+                <div class="card" style="align-items: center; text-align: center;">
+                    <h3 style="text-align: center; margin-bottom: var(--s-8);">Starter Twister</h3>
+                    <p
+                        style="text-align: center; margin: 0 0 var(--s-24) 0; color: var(--color-text-muted); font-size: 0.95rem;">
+                        Perfect for intimate gatherings.</p>
+                    <ul
+                        style="list-style: none; padding: 0; margin: 0 0 var(--s-32) 0; display: flex; flex-direction: column; gap: 12px; width: 100%;">
+                        <li style="display: flex; align-items: center; gap: 10px; font-size: 0.95rem;">
+                            <span
+                                style="width: 8px; height: 8px; border-radius: 50%; background: var(--color-primary); flex-shrink: 0;"></span>
+                            1.5 hours of live balloon twisting
+                        </li>
+                        <li style="display: flex; align-items: center; gap: 10px; font-size: 0.95rem;">
+                            <span
+                                style="width: 8px; height: 8px; border-radius: 50%; background: var(--color-primary); flex-shrink: 0;"></span>
+                            1 professional artist, up to 20 guests
+                        </li>
+                        <li style="display: flex; align-items: center; gap: 10px; font-size: 0.95rem;">
+                            <span
+                                style="width: 8px; height: 8px; border-radius: 50%; background: var(--color-primary); flex-shrink: 0;"></span>
+                            Standard animal & hat designs
+                        </li>
+                    </ul>
+                    <a href="packages.html" class="btn btn-primary" style="width: 100%; margin-top: auto;">Book Now</a>
                 </div>
-                <div class="card">
-                    <h3>Grand Celebration</h3>
-                    <p>The ultimate entertainment package.</p>
-                    <a href="packages.html" class="btn btn-primary">Book Now</a>
+
+                <!-- Grand Celebration -->
+                <div class="card"
+                    style="align-items: center; text-align: center; border: 2px solid var(--color-primary);">
+                    <h3 style="text-align: center; margin-bottom: var(--s-8);">Grand Celebration</h3>
+                    <p
+                        style="text-align: center; margin: 0 0 var(--s-24) 0; color: var(--color-text-muted); font-size: 0.95rem;">
+                        The ultimate entertainment package.</p>
+                    <ul
+                        style="list-style: none; padding: 0; margin: 0 0 var(--s-32) 0; display: flex; flex-direction: column; gap: 12px; width: 100%;">
+                        <li style="display: flex; align-items: center; gap: 10px; font-size: 0.95rem;">
+                            <span
+                                style="width: 8px; height: 8px; border-radius: 50%; background: var(--color-primary); flex-shrink: 0;"></span>
+                            4 hours with 2 professional artists
+                        </li>
+                        <li style="display: flex; align-items: center; gap: 10px; font-size: 0.95rem;">
+                            <span
+                                style="width: 8px; height: 8px; border-radius: 50%; background: var(--color-primary); flex-shrink: 0;"></span>
+                            Up to 100 guests, masterwork designs
+                        </li>
+                        <li style="display: flex; align-items: center; gap: 10px; font-size: 0.95rem;">
+                            <span
+                                style="width: 8px; height: 8px; border-radius: 50%; background: var(--color-primary); flex-shrink: 0;"></span>
+                            Balloon backdrop included
+                        </li>
+                    </ul>
+                    <a href="packages.html" class="btn btn-primary" style="width: 100%; margin-top: auto;">Book Now</a>
                 </div>
-                <div class="card">
-                    <h3>Bespoke Artistry</h3>
-                    <p>Custom designs for unique themes.</p>
-                    <a href="packages.html" class="btn btn-primary">Book Now</a>
+
+                <!-- Bespoke -->
+                <div class="card" style="align-items: center; text-align: center;">
+                    <h3 style="text-align: center; margin-bottom: var(--s-8);">Bespoke Artistry</h3>
+                    <p
+                        style="text-align: center; margin: 0 0 var(--s-24) 0; color: var(--color-text-muted); font-size: 0.95rem;">
+                        Custom designs for unique themes.</p>
+                    <ul
+                        style="list-style: none; padding: 0; margin: 0 0 var(--s-32) 0; display: flex; flex-direction: column; gap: 12px; width: 100%;">
+                        <li style="display: flex; align-items: center; gap: 10px; font-size: 0.95rem;">
+                            <span
+                                style="width: 8px; height: 8px; border-radius: 50%; background: var(--color-primary); flex-shrink: 0;"></span>
+                            Fully custom theme & color palette
+                        </li>
+                        <li style="display: flex; align-items: center; gap: 10px; font-size: 0.95rem;">
+                            <span
+                                style="width: 8px; height: 8px; border-radius: 50%; background: var(--color-primary); flex-shrink: 0;"></span>
+                            Flexible duration & unlimited guests
+                        </li>
+                        <li style="display: flex; align-items: center; gap: 10px; font-size: 0.95rem;">
+                            <span
+                                style="width: 8px; height: 8px; border-radius: 50%; background: var(--color-primary); flex-shrink: 0;"></span>
+                            Large-scale installations available
+                        </li>
+                    </ul>
+                    <a href="packages.html" class="btn btn-primary" style="width: 100%; margin-top: auto;">Book Now</a>
                 </div>
+
             </div>
         </div>
     </section>
 
+
+    <!-- Meet the Artist -->
+    <section style="background: var(--color-surface);">
+        <div class="container">
+            <div class="artist-grid">
+
+                <!-- Left: Image (Order 1 on Desktop) -->
+                <div class="artist-image-col" style="position: relative;">
+                    <div style="border-radius: 32px 32px 120px 32px; overflow: hidden; height: 580px;">
+                        <img src="assets/images/artist-portrait.jpg" alt="Arthur Twister — Founder & Lead Artist"
+                            style="width: 100%; height: 100%; object-fit: cover; display: block;">
+                    </div>
+                    <!-- Floating experience badge -->
+                    <div
+                        style="position: absolute; bottom: 40px; right: -24px; background: var(--color-primary); color: #FFF; border-radius: 20px; padding: var(--s-24); text-align: center; box-shadow: 0 16px 40px rgba(255,51,102,0.35);">
+                        <span
+                            style="font-family: var(--font-display); font-size: 2.5rem; font-weight: 900; display: block; line-height: 1;">15+</span>
+                        <span
+                            style="font-size: 0.75rem; text-transform: uppercase; letter-spacing: 2px; opacity: 0.9;">Years
+                            of<br>Experience</span>
+                    </div>
+                    <!-- Decorative circle -->
+                    <div
+                        style="position: absolute; top: -24px; left: -24px; width: 120px; height: 120px; border-radius: 50%; background: var(--color-secondary); opacity: 0.2; z-index: -1;">
+                    </div>
+                </div>
+
+                <!-- Right: Text (Order 2 on Desktop) -->
+                <div class="artist-text-col" style="text-align: center;">
+                    <span class="section-subtitle" style="text-align: center; display: block;">Meet The Artist</span>
+                    <h2 style="text-align: center; font-size: clamp(2rem, 4vw, 3.2rem); margin-bottom: var(--s-24);">
+                        Arthur Twister</h2>
+                    <p
+                        style="text-align: center; color: var(--color-text-muted); margin: 0 0 var(--s-24) 0; font-size: 1.05rem;">
+                        Founder and lead artist at TwistCraft, Arthur has spent over 15 years transforming simple latex
+                        into extraordinary works of art. From intimate birthday parties to global brand activations, his
+                        hands have twisted for royalty, celebrities, and Fortune 500 companies.</p>
+                    <p
+                        style="text-align: center; color: var(--color-text-muted); margin: 0 0 var(--s-48) 0; font-size: 1.05rem;">
+                        His philosophy is simple — every balloon sculpture is a moment of joy frozen in time. That
+                        belief drives every twist, every lock, every creation that leaves his hands.</p>
+
+                    <!-- Signature -->
+                    <div
+                        style="margin-bottom: var(--s-48); padding-bottom: var(--s-48); border-bottom: 1px solid var(--color-border); text-align: center;">
+                        <span
+                            style="font-family: var(--font-accent); font-size: 2.5rem; color: var(--color-primary);">Arthur
+                            Twister</span>
+                        <p
+                            style="text-align: center; font-size: 0.8rem; color: var(--color-text-muted); margin: 4px 0 0;">
+                            Founder & Lead Artist, TwistCraft</p>
+                    </div>
+
+                    <!-- Quick facts -->
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: var(--s-24);">
+                        <div>
+                            <h5 style="text-align: center; margin-bottom: 4px; color: var(--color-primary);">Specialty
+                            </h5>
+                            <p style="text-align: center; margin: 0; font-size: 0.9rem;">Masterwork characters &
+                                large-scale installations</p>
+                        </div>
+                        <div>
+                            <h5 style="text-align: center; margin-bottom: 4px; color: var(--color-primary);">Certified
+                                By</h5>
+                            <p style="text-align: center; margin: 0; font-size: 0.9rem;">World Balloon Convention &
+                                Qualatex Pro Team</p>
+                        </div>
+                        <div>
+                            <h5 style="text-align: center; margin-bottom: 4px; color: var(--color-primary);">Based In
+                            </h5>
+                            <p style="text-align: center; margin: 0; font-size: 0.9rem;">Balloon City — travels
+                                nationwide</p>
+                        </div>
+                        <div>
+                            <h5 style="text-align: center; margin-bottom: 4px; color: var(--color-primary);">Events Done
+                            </h5>
+                            <p style="text-align: center; margin: 0; font-size: 0.9rem;">1,200+ across 30 states</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section style="background: var(--color-bg);">
+        <div class="container">
+            <span class="section-subtitle">Kind Words</span>
+            <h2 class="section-title">What Our Clients Say</h2>
+            <p class="section-desc">Real stories from real celebrations.</p>
+
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: var(--s-32); margin-top: var(--s-64);">
+
+                <!-- Testimonial 1 -->
+                <div
+                    style="background: var(--color-surface); border-radius: var(--radius); padding: var(--s-48); border: 1px solid var(--color-border); box-shadow: var(--shadow); position: relative; text-align: center;">
+                    <!-- Quote mark -->
+                    <span
+                        style="font-family: var(--font-display); font-size: 8rem; color: var(--color-primary); opacity: 0.1; position: absolute; top: 10px; left: 32px; line-height: 1;">"</span>
+
+                    <!-- User Image -->
+                    <img src="assets/images/testimonial-1.jpg" alt="Sarah Miller"
+                        style="width: 90px; height: 90px; border-radius: 50%; object-fit: cover; border: 3px solid var(--color-primary); margin: 0 auto var(--s-24);">
+
+                    <!-- Stars -->
+                    <div style="display: flex; gap: 4px; margin-bottom: var(--s-24); justify-content: center;">
+                        <i class="ph-fill ph-star" style="color: var(--color-secondary); font-size: 1.1rem;"></i>
+                        <i class="ph-fill ph-star" style="color: var(--color-secondary); font-size: 1.1rem;"></i>
+                        <i class="ph-fill ph-star" style="color: var(--color-secondary); font-size: 1.1rem;"></i>
+                        <i class="ph-fill ph-star" style="color: var(--color-secondary); font-size: 1.1rem;"></i>
+                        <i class="ph-fill ph-star" style="color: var(--color-secondary); font-size: 1.1rem;"></i>
+                    </div>
+
+                    <!-- Review Text -->
+                    <p
+                        style="text-align: center; font-size: 0.98rem; line-height: 1.8; color: var(--color-text-muted); margin: 0 0 var(--s-32) 0; font-style: italic;">
+                        "Pure magic. Our wedding guests were completely mesmerized. Worth every single penny."</p>
+
+                    <!-- Divider -->
+                    <div style="height: 1px; background: var(--color-border); margin-bottom: var(--s-24);"></div>
+
+                    <!-- Name & Tag -->
+                    <h5 style="text-align: center; margin-bottom: 4px; font-size: 1rem;">Sarah & James Miller</h5>
+                    <span
+                        style="font-size: 0.82rem; color: var(--color-text-muted); display: block; text-align: center; margin-bottom: var(--s-16);">Wedding
+                        Event · New York</span>
+                    <div
+                        style="display: inline-block; background: var(--color-primary); color: #FFF; font-size: 0.7rem; font-weight: 700; padding: 4px 16px; border-radius: 50px; text-transform: uppercase; letter-spacing: 1px;">
+                        Wedding</div>
+                </div>
+
+                <!-- Testimonial 2 -->
+                <div
+                    style="background: var(--color-surface); border-radius: var(--radius); padding: var(--s-48); border: 1px solid var(--color-border); box-shadow: var(--shadow); position: relative; text-align: center;">
+                    <!-- Quote mark -->
+                    <span
+                        style="font-family: var(--font-display); font-size: 8rem; color: var(--color-primary); opacity: 0.1; position: absolute; top: 10px; left: 32px; line-height: 1;">"</span>
+
+                    <!-- User Image -->
+                    <img src="assets/images/testimonial-2.jpg" alt="David Chen"
+                        style="width: 90px; height: 90px; border-radius: 50%; object-fit: cover; border: 3px solid var(--color-primary); margin: 0 auto var(--s-24);">
+
+                    <!-- Stars -->
+                    <div style="display: flex; gap: 4px; margin-bottom: var(--s-24); justify-content: center;">
+                        <i class="ph-fill ph-star" style="color: var(--color-secondary); font-size: 1.1rem;"></i>
+                        <i class="ph-fill ph-star" style="color: var(--color-secondary); font-size: 1.1rem;"></i>
+                        <i class="ph-fill ph-star" style="color: var(--color-secondary); font-size: 1.1rem;"></i>
+                        <i class="ph-fill ph-star" style="color: var(--color-secondary); font-size: 1.1rem;"></i>
+                        <i class="ph-fill ph-star" style="color: var(--color-secondary); font-size: 1.1rem;"></i>
+                    </div>
+
+                    <!-- Review Text -->
+                    <p
+                        style="text-align: center; font-size: 0.98rem; line-height: 1.8; color: var(--color-text-muted); margin: 0 0 var(--s-32) 0; font-style: italic;">
+                        "They twisted our company logo in under 2 minutes — the crowd went wild. TwistCraft is on our
+                        permanent vendor list."</p>
+
+                    <!-- Divider -->
+                    <div style="height: 1px; background: var(--color-border); margin-bottom: var(--s-24);"></div>
+
+                    <!-- Name & Tag -->
+                    <h5 style="text-align: center; margin-bottom: 4px; font-size: 1rem;">David Chen</h5>
+                    <span
+                        style="font-size: 0.82rem; color: var(--color-text-muted); display: block; text-align: center; margin-bottom: var(--s-16);">Head
+                        of Events · TechCorp Global</span>
+                    <div
+                        style="display: inline-block; background: var(--color-accent); color: #FFF; font-size: 0.7rem; font-weight: 700; padding: 4px 16px; border-radius: 50px; text-transform: uppercase; letter-spacing: 1px;">
+                        Corporate</div>
+                </div>
+
+            </div>
+        </div>
+    </section>
     <!-- Workshop Countdown -->
     <section class="countdown-section">
         <div class="container">
-            <h2 style="color: #FFF;">Next Twister Workshop In:</h2>
-            <div class="countdown-grid" id="countdown">
-                <div class="countdown-item"><span id="days">00</span><span>Days</span></div>
-                <div class="countdown-item"><span id="hours">00</span><span>Hours</span></div>
-                <div class="countdown-item"><span id="mins">00</span><span>Mins</span></div>
-                <div class="countdown-item"><span id="secs">00</span><span>Secs</span></div>
-            </div>
-            <div style="margin-top: var(--s-48);">
-                <a href="workshops.html" class="btn btn-primary" style="background: #FFF; color: var(--color-primary);">Register Now</a>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: var(--s-96); align-items: center;">
+
+                <!-- Left: Text -->
+                <div class="countdown-left" style="text-align: left;">
+                    <span
+                        style="font-family: var(--font-accent); font-size: 1.5rem; color: rgba(255,255,255,0.6); display: block; margin-bottom: var(--s-8); text-align: center;">Limited
+                        Seats Available</span>
+                    <h2
+                        style="color: #FFF; text-align: left; font-size: clamp(2rem, 4vw, 3rem); margin-bottom: var(--s-24);">
+                        Next Twister Workshop Is Almost Here</h2>
+                    <p
+                        style="text-align: left; color: rgba(255,255,255,0.7); margin: 0 0 var(--s-32) 0; max-width: 420px;">
+                        Join our certified instructors for a hands-on balloon twisting masterclass. Beginners welcome —
+                        all materials included.</p>
+                    <div style="display: flex; gap: var(--s-16); flex-wrap: wrap;">
+                        <a href="workshops.html" class="btn btn-primary"
+                            style="background: #FFF; color: var(--color-primary);">Register Now</a>
+                        <a href="workshops.html" class="btn btn-schedule"
+                            style="border: 2px solid rgba(255,255,255,0.4); color: #FFF; background: transparent;">View
+                            Schedule</a>
+                    </div>
+                </div>
+
+                <!-- Right: Countdown -->
+                <div>
+                    <span
+                        style="font-size: 0.8rem; text-transform: uppercase; letter-spacing: 2px; color: rgba(255,255,255,0.8); display: block; margin-bottom: var(--s-16); text-align: center;">Workshop
+                        In Progress</span>
+                    <div class="countdown-grid" id="countdown" style="gap: var(--s-16); justify-content: center;">
+                        <div class="countdown-item countdown-item-box"
+                            style="background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); border-radius: var(--radius); padding: var(--s-32) var(--s-24); min-width: 100px; backdrop-filter: blur(8px);">
+                            <span id="days"
+                                style="font-size: 3rem; font-weight: 900; font-family: var(--font-display); color: #FFF; display: block; line-height: 1;">00</span>
+                            <span
+                                style="font-size: 0.75rem; text-transform: uppercase; letter-spacing: 2px; color: rgba(255,255,255,0.6); margin-top: 8px; display: block;">Days</span>
+                        </div>
+                        <div class="countdown-item countdown-item-box"
+                            style="background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); border-radius: var(--radius); padding: var(--s-32) var(--s-24); min-width: 100px; backdrop-filter: blur(8px);">
+                            <span id="hours"
+                                style="font-size: 3rem; font-weight: 900; font-family: var(--font-display); color: #FFF; display: block; line-height: 1;">00</span>
+                            <span
+                                style="font-size: 0.75rem; text-transform: uppercase; letter-spacing: 2px; color: rgba(255,255,255,0.6); margin-top: 8px; display: block;">Hours</span>
+                        </div>
+                        <div class="countdown-item countdown-item-box"
+                            style="background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); border-radius: var(--radius); padding: var(--s-32) var(--s-24); min-width: 100px; backdrop-filter: blur(8px);">
+                            <span id="mins"
+                                style="font-size: 3rem; font-weight: 900; font-family: var(--font-display); color: #FFF; display: block; line-height: 1;">00</span>
+                            <span
+                                style="font-size: 0.75rem; text-transform: uppercase; letter-spacing: 2px; color: rgba(255,255,255,0.6); margin-top: 8px; display: block;">Mins</span>
+                        </div>
+                        <div class="countdown-item countdown-item-box"
+                            style="background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); border-radius: var(--radius); padding: var(--s-32) var(--s-24); min-width: 100px; backdrop-filter: blur(8px);">
+                            <span id="secs"
+                                style="font-size: 3rem; font-weight: 900; font-family: var(--font-display); color: #FFF; display: block; line-height: 1;">00</span>
+                            <span
+                                style="font-size: 0.75rem; text-transform: uppercase; letter-spacing: 2px; color: rgba(255,255,255,0.6); margin-top: 8px; display: block;">Secs</span>
+                        </div>
+                    </div>
+
+                    <!-- Seats indicator -->
+                    <div class="countdown-seats"
+                        style="margin-top: var(--s-32); background: rgba(255,255,255,0.1); border-radius: var(--radius); padding: var(--s-24); border: 1px solid rgba(255,255,255,0.15);">
+                        <div style="display: flex; justify-content: space-between; margin-bottom: 10px;">
+                            <span style="color: rgba(255,255,255,0.8); font-size: 0.9rem;">Seats Filled</span>
+                            <span style="color: #FFF; font-weight: 700; font-size: 0.9rem;">8 / 12</span>
+                        </div>
+                        <div
+                            style="height: 6px; background: rgba(255,255,255,0.2); border-radius: 50px; overflow: hidden;">
+                            <div
+                                style="height: 100%; width: 66%; background: var(--color-secondary); border-radius: 50px;">
+                            </div>
+                        </div>
+                        <p style="text-align: right; margin: 8px 0 0; font-size: 0.8rem; color: rgba(255,255,255,0.6);">
+                            Only 4 spots remaining!</p>
+                    </div>
+                </div>
+
             </div>
         </div>
     </section>
@@ -220,4 +729,5 @@
         setTimeout(type, 1000);
     </script>
 </body>
+
 </html>

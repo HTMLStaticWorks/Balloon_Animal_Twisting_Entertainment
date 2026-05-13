@@ -13,14 +13,15 @@
     
     <style>
         body {
-            height: 100vh;
+            min-height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
             background: var(--color-bg);
             padding: var(--s-24);
             margin: 0;
-            overflow: hidden;
+            overflow-y: auto;
+            overflow-x: hidden;
         }
         .auth-card {
             width: 100%;
@@ -42,12 +43,36 @@
         .divider::before { margin-right: 15px; }
         .divider::after { margin-left: 15px; }
 
-        .social-btn { display: flex; align-items: center; justify-content: center; gap: 10px; width: 100%; padding: 12px; border-radius: var(--radius); border: 1px solid var(--color-border); background: var(--color-bg); cursor: pointer; font-weight: 600; margin-bottom: 10px; transition: var(--transition); }
-        .social-btn:hover { background: var(--color-surface); }
+        .social-btn { display: flex; align-items: center; justify-content: center; gap: 10px; width: 100%; padding: 12px; border-radius: var(--radius); border: 1px solid var(--color-border); background: var(--color-bg); cursor: pointer; font-weight: 600; margin-bottom: 10px; transition: var(--transition); color: var(--color-text); }
+        .social-btn:hover { background: var(--color-surface); border-color: var(--color-primary); transform: translateY(-2px); }
         .google-icon { color: #DB4437; }
+        
+        a { transition: var(--transition); text-decoration: none; }
+        a:hover { opacity: 0.8; text-decoration: underline; }
+
+        .auth-actions {
+            position: fixed;
+            top: 15px;
+            right: 15px;
+            display: flex;
+            gap: 10px;
+            z-index: 100;
+        }
+
+        @media (max-width: 480px) or (max-height: 700px) {
+            body { align-items: flex-start; padding-top: 80px; padding-bottom: 40px; }
+        }
     </style>
 </head>
 <body data-theme="light">
+    <div class="auth-actions">
+        <button class="icon-btn" id="rtl-toggle" title="Toggle RTL">
+            <i class="ph ph-arrows-left-right"></i>
+        </button>
+        <button class="icon-btn" id="theme-toggle" title="Toggle Theme">
+            <i class="ph ph-moon"></i>
+        </button>
+    </div>
 
     <div class="auth-card">
         <a href="index.html" class="logo">
@@ -63,15 +88,18 @@
                 <input type="email" placeholder="email@example.com" required>
             </div>
             <div class="form-group">
-                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
-                    <label style="margin-bottom: 0;">Password</label>
-                    <a href="#" style="font-size: 0.8rem; color: var(--color-primary);">Forgot Password?</a>
-                </div>
+                <label>Password</label>
                 <div style="position: relative;">
                     <input type="password" id="password" placeholder="••••••••" required>
                     <button type="button" id="toggle-password" style="position: absolute; right: 15px; top: 50%; transform: translateY(-50%); background: none; border: none; color: var(--color-text-muted); cursor: pointer;">
                         <i class="ph ph-eye"></i>
                     </button>
+                </div>
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 12px; gap: 10px;">
+                    <label style="display: flex; align-items: center; gap: 8px; font-weight: 600; font-size: 0.85rem; cursor: pointer; margin-bottom: 0; white-space: nowrap;">
+                        <input type="checkbox" style="width: auto; margin: 0;"> Remember Me
+                    </label>
+                    <a href="#" style="font-size: 0.85rem; color: var(--color-primary); font-weight: 600; white-space: nowrap;">Forgot Password?</a>
                 </div>
             </div>
             <button type="submit" class="btn btn-primary" style="width: 100%;">Login</button>
@@ -80,7 +108,7 @@
         <div class="divider">or continue with</div>
 
         <button class="social-btn"><i class="ph ph-google-logo google-icon"></i> Google</button>
-        <button class="social-btn"><i class="ph ph-envelope"></i> Email</button>
+        <button class="social-btn"><i class="ph ph-apple-logo"></i> Apple</button>
 
         <p style="margin-top: var(--s-32); font-size: 0.9rem;">Don't have an account? <a href="register.html" style="color: var(--color-primary); font-weight: 700;">Register</a></p>
     </div>
@@ -93,6 +121,21 @@
             passInput.setAttribute('type', type);
             passToggle.querySelector('i').classList.toggle('ph-eye');
             passToggle.querySelector('i').classList.toggle('ph-eye-slash');
+        });
+
+        // Theme Toggle
+        const themeBtn = document.getElementById('theme-toggle');
+        themeBtn.addEventListener('click', () => {
+            const isDark = document.body.getAttribute('data-theme') === 'dark';
+            document.body.setAttribute('data-theme', isDark ? 'light' : 'dark');
+            themeBtn.querySelector('i').className = isDark ? 'ph ph-moon' : 'ph ph-sun';
+        });
+
+        // RTL Toggle
+        const rtlBtn = document.getElementById('rtl-toggle');
+        rtlBtn.addEventListener('click', () => {
+            const isRtl = document.documentElement.getAttribute('dir') === 'rtl';
+            document.documentElement.setAttribute('dir', isRtl ? 'ltr' : 'rtl');
         });
     </script>
 </body>

@@ -16,7 +16,7 @@ document.addEventListener('DOMContentLoaded', () => {
         [themeToggle, drawerThemeToggle].forEach(btn => {
             if (btn) {
                 const icon = btn.querySelector('i');
-                if (icon) icon.className = iconClass;
+                if (icon) icon.className = `ph ${iconClass}`;
             }
         });
     };
@@ -110,7 +110,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Workshop Countdown
     const countdownEl = document.getElementById('countdown');
     if (countdownEl) {
-        const NEXT_WORKSHOP_DATE = new Date("2025-08-15T10:00:00").getTime();
+        const NEXT_WORKSHOP_DATE = new Date("2026-06-15T10:00:00").getTime();
 
         const updateCountdown = () => {
             const now = new Date().getTime();

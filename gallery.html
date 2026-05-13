@@ -1,22 +1,24 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sculpture Gallery — TwistCraft Portfolio</title>
-    
+
     <!-- Icons -->
     <script src="https://unpkg.com/@phosphor-icons/web@2.1.1"></script>
-    
+
     <!-- Styles -->
     <link rel="stylesheet" href="assets/css/style.css">
     <link rel="stylesheet" href="assets/css/rtl.css">
-    
+
     <style>
         .gallery-header {
             padding: var(--s-128) 0 var(--s-64);
             background: var(--color-surface);
         }
+
         .filter-tabs {
             display: flex;
             justify-content: center;
@@ -24,6 +26,7 @@
             margin-bottom: var(--s-48);
             flex-wrap: wrap;
         }
+
         .filter-btn {
             padding: 10px 24px;
             border-radius: 50px;
@@ -34,7 +37,9 @@
             font-weight: 600;
             transition: var(--transition);
         }
-        .filter-btn.active, .filter-btn:hover {
+
+        .filter-btn.active,
+        .filter-btn:hover {
             background: var(--color-primary);
             color: #FFF;
             border-color: var(--color-primary);
@@ -45,13 +50,14 @@
             transition: var(--transition);
             position: relative;
         }
+
         .gallery-overlay {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0,0,0,0.6);
+            background: rgba(0, 0, 0, 0.6);
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -61,11 +67,19 @@
             color: #FFF;
             padding: var(--s-24);
         }
+
         .gallery-item:hover .gallery-overlay {
             opacity: 1;
         }
-        .gallery-info { text-align: center; }
-        .gallery-info h4 { color: #FFF; margin-bottom: 10px; }
+
+        .gallery-info {
+            text-align: center;
+        }
+
+        .gallery-info h4 {
+            color: #FFF;
+            margin-bottom: 10px;
+        }
 
         /* Lightbox */
         .lightbox {
@@ -74,7 +88,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0,0,0,0.9);
+            background: rgba(0, 0, 0, 0.9);
             z-index: 2000;
             display: none;
             align-items: center;
@@ -82,37 +96,94 @@
             flex-direction: column;
             padding: var(--s-32);
         }
-        .lightbox.active { display: flex; }
-        .lightbox img { max-height: 80vh; border-radius: var(--radius); }
-        .lightbox-close { position: absolute; top: 32px; right: 32px; font-size: 3rem; color: #FFF; cursor: pointer; }
-        .lightbox-title { color: #FFF; margin-top: var(--s-24); font-size: 1.5rem; }
 
-        .badge { padding: 4px 10px; border-radius: 50px; font-size: 0.7rem; font-weight: 800; margin-top: 10px; display: inline-block; }
-        .badge-basic { background: var(--color-accent); color: #FFF; }
-        .badge-intermediate { background: var(--color-secondary); color: #111; }
-        .badge-advanced { background: var(--color-primary); color: #FFF; }
-        .badge-masterwork { background: linear-gradient(45deg, var(--color-primary), var(--color-secondary)); color: #FFF; }
+        .lightbox.active {
+            display: flex;
+        }
+
+        .lightbox img {
+            max-height: 80vh;
+            border-radius: var(--radius);
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: 32px;
+            right: 32px;
+            font-size: 3rem;
+            color: #FFF;
+            cursor: pointer;
+        }
+
+        .lightbox-title {
+            color: #FFF;
+            margin-top: var(--s-24);
+            font-size: 1.5rem;
+        }
+
+        .badge {
+            padding: 4px 10px;
+            border-radius: 50px;
+            font-size: 0.7rem;
+            font-weight: 800;
+            margin-top: 10px;
+            display: inline-block;
+        }
+
+        .badge-basic {
+            background: var(--color-accent);
+            color: #FFF;
+        }
+
+        .badge-intermediate {
+            background: var(--color-secondary);
+            color: #111;
+        }
+
+        .badge-advanced {
+            background: var(--color-primary);
+            color: #FFF;
+        }
+
+        .badge-masterwork {
+            background: linear-gradient(45deg, var(--color-primary), var(--color-secondary));
+            color: #FFF;
+        }
     </style>
 </head>
+
 <body>
 
     <!-- Navbar -->
-    <nav class="navbar scrolled">
+    <nav class="navbar">
         <div class="container nav-container">
-            <a href="index.html" class="logo"><span class="logo-icon"></span>TwistCraft</a>
+            <a href="index.html" class="logo">
+                <span class="logo-icon"></span>
+                TwistCraft
+            </a>
+
             <div class="nav-links">
                 <a href="index.html" class="nav-link">Home</a>
-                <a href="gallery.html" class="nav-link active">Gallery</a>
+                <a href="home2.html" class="nav-link">Home 2</a>
+                <a href="gallery.html" class="nav-link">Gallery</a>
                 <a href="services.html" class="nav-link">Services</a>
                 <a href="packages.html" class="nav-link">Packages</a>
                 <a href="workshops.html" class="nav-link">Workshops</a>
+                <a href="blog.html" class="nav-link">Blog</a>
                 <a href="contact.html" class="nav-link">Contact</a>
             </div>
+
             <div class="nav-actions">
-                <button class="icon-btn" id="rtl-toggle"><i class="ph ph-arrows-left-right"></i></button>
-                <button class="icon-btn" id="theme-toggle"><i class="ph ph-moon"></i></button>
-                <a href="booking.html" class="nav-cta">Book Now</a>
-                <button class="icon-btn hamburger" id="hamburger"><i class="ph ph-list"></i></button>
+                <button class="icon-btn" id="rtl-toggle" aria-label="Toggle RTL">
+                    <i class="ph ph-arrows-left-right"></i>
+                </button>
+                <button class="icon-btn" id="theme-toggle" aria-label="Toggle Theme">
+                    <i class="ph ph-moon"></i>
+                </button>
+                <a href="login.html" class="nav-cta">Login</a>
+                <button class="icon-btn hamburger" id="hamburger" aria-label="Open Menu">
+                    <i class="ph ph-list"></i>
+                </button>
             </div>
         </div>
     </nav>
@@ -121,25 +192,41 @@
     <div class="drawer-overlay" id="drawer-overlay"></div>
     <div class="drawer" id="drawer">
         <div class="drawer-header">
-            <a href="index.html" class="logo"><span class="logo-icon"></span>TwistCraft</a>
-            <button class="icon-btn" id="drawer-close"><i class="ph ph-x"></i></button>
+            <a href="index.html" class="logo">
+                <span class="logo-icon"></span>
+                TwistCraft
+            </a>
+            <button class="icon-btn" id="drawer-close">
+                <i class="ph ph-x"></i>
+            </button>
         </div>
         <div class="drawer-links">
             <a href="index.html" class="drawer-link">Home</a>
+            <a href="home2.html" class="drawer-link">Home 2</a>
             <a href="gallery.html" class="drawer-link">Gallery</a>
             <a href="services.html" class="drawer-link">Services</a>
             <a href="packages.html" class="drawer-link">Packages</a>
             <a href="workshops.html" class="drawer-link">Workshops</a>
-            <a href="booking.html" class="btn btn-primary" style="width: 100%;">Book Now</a>
+            <a href="blog.html" class="drawer-link">Blog</a>
+            <a href="contact.html" class="drawer-link">Contact</a>
+            <a href="login.html" class="btn btn-primary" style="width: 100%;">Login</a>
+        </div>
+        <div class="drawer-footer">
+            <button class="icon-btn" id="drawer-theme-toggle">
+                <i class="ph ph-moon"></i> Theme
+            </button>
+            <button class="icon-btn" id="drawer-rtl-toggle">
+                <i class="ph ph-arrows-left-right"></i> RTL Support
+            </button>
         </div>
     </div>
-
     <header class="gallery-header">
         <div class="container">
             <span class="section-subtitle">Our Portfolio</span>
             <h1 class="section-title">Sculpture Gallery</h1>
-            <p class="section-desc">Explore our hand-twisted masterpieces. Each creation is a unique blend of air, latex, and artistic passion.</p>
-            
+            <p class="section-desc">Explore our hand-twisted masterpieces. Each creation is a unique blend of air,
+                latex, and artistic passion.</p>
+
             <div class="filter-tabs">
                 <button class="filter-btn active" data-filter="all">All Items</button>
                 <button class="filter-btn" data-filter="Animals">Animals</button>
@@ -155,86 +242,119 @@
 
     <section class="container">
         <div class="gallery-grid">
+
             <div class="gallery-item" data-category="Animals" data-complexity="Basic">
-                <img src="https://images.unsplash.com/photo-1473111583972-e160124697d8?q=80&w=800" alt="Poodle">
+                <img src="assets/images/gallery-poodle.jpg" alt="Poodle">
                 <div class="gallery-overlay">
                     <div class="gallery-info">
                         <h4>Classic Poodle</h4>
                         <span class="badge badge-basic">Basic</span>
-                        <div style="margin-top: 15px;"><span class="btn btn-primary" style="padding: 8px 16px; font-size: 0.8rem;">Request This</span></div>
+                        <div style="margin-top: 15px;">
+                            <a href="contact.html" class="btn btn-primary"
+                                style="padding: 8px 16px; font-size: 0.8rem;">Request This</a>
+                        </div>
                     </div>
                 </div>
             </div>
+
             <div class="gallery-item" data-category="Characters" data-complexity="Masterwork">
-                <img src="https://images.unsplash.com/photo-1530103862676-fa392231fa3c?q=80&w=800" alt="Dragon">
+                <img src="assets/images/gallery-dragon.jpg" alt="Dragon">
                 <div class="gallery-overlay">
                     <div class="gallery-info">
                         <h4>Neon Dragon</h4>
                         <span class="badge badge-masterwork">Masterwork</span>
-                        <div style="margin-top: 15px;"><span class="btn btn-primary" style="padding: 8px 16px; font-size: 0.8rem;">Request This</span></div>
+                        <div style="margin-top: 15px;">
+                            <a href="contact.html" class="btn btn-primary"
+                                style="padding: 8px 16px; font-size: 0.8rem;">Request This</a>
+                        </div>
                     </div>
                 </div>
             </div>
+
             <div class="gallery-item" data-category="Animals" data-complexity="Advanced">
-                <img src="https://images.unsplash.com/photo-1610473068533-31362e49956d?q=80&w=800" alt="Unicorn">
+                <img src="assets/images/gallery-unicorn.jpg" alt="Unicorn">
                 <div class="gallery-overlay">
                     <div class="gallery-info">
                         <h4>Fantasy Unicorn</h4>
                         <span class="badge badge-advanced">Advanced</span>
-                        <div style="margin-top: 15px;"><span class="btn btn-primary" style="padding: 8px 16px; font-size: 0.8rem;">Request This</span></div>
+                        <div style="margin-top: 15px;">
+                            <a href="contact.html" class="btn btn-primary"
+                                style="padding: 8px 16px; font-size: 0.8rem;">Request This</a>
+                        </div>
                     </div>
                 </div>
             </div>
+
             <div class="gallery-item" data-category="Wearables" data-complexity="Intermediate">
-                <img src="https://images.unsplash.com/photo-1533777857889-4be7c70b33f7?q=80&w=800" alt="Bouquet">
+                <img src="assets/images/gallery-bouquet.jpg" alt="Bouquet">
                 <div class="gallery-overlay">
                     <div class="gallery-info">
                         <h4>Twisted Bouquet</h4>
                         <span class="badge badge-intermediate">Intermediate</span>
-                        <div style="margin-top: 15px;"><span class="btn btn-primary" style="padding: 8px 16px; font-size: 0.8rem;">Request This</span></div>
+                        <div style="margin-top: 15px;">
+                            <a href="contact.html" class="btn btn-primary"
+                                style="padding: 8px 16px; font-size: 0.8rem;">Request This</a>
+                        </div>
                     </div>
                 </div>
             </div>
+
             <div class="gallery-item" data-category="Animals" data-complexity="Intermediate">
-                <img src="https://images.unsplash.com/photo-1560450411-47752e557b61?q=80&w=800" alt="Lion">
+                <img src="assets/images/gallery-lion.jpg" alt="Lion">
                 <div class="gallery-overlay">
                     <div class="gallery-info">
                         <h4>Safari Lion</h4>
                         <span class="badge badge-intermediate">Intermediate</span>
-                        <div style="margin-top: 15px;"><span class="btn btn-primary" style="padding: 8px 16px; font-size: 0.8rem;">Request This</span></div>
+                        <div style="margin-top: 15px;">
+                            <a href="contact.html" class="btn btn-primary"
+                                style="padding: 8px 16px; font-size: 0.8rem;">Request This</a>
+                        </div>
                     </div>
                 </div>
             </div>
+
             <div class="gallery-item" data-category="Characters" data-complexity="Advanced">
-                <img src="https://images.unsplash.com/photo-1525268771113-32d9e9021a97?q=80&w=800" alt="Arch">
+                <img src="assets/images/gallery-arch.jpg" alt="Arch">
                 <div class="gallery-overlay">
                     <div class="gallery-info">
                         <h4>Balloon Arch</h4>
                         <span class="badge badge-advanced">Advanced</span>
-                        <div style="margin-top: 15px;"><span class="btn btn-primary" style="padding: 8px 16px; font-size: 0.8rem;">Request This</span></div>
+                        <div style="margin-top: 15px;">
+                            <a href="contact.html" class="btn btn-primary"
+                                style="padding: 8px 16px; font-size: 0.8rem;">Request This</a>
+                        </div>
                     </div>
                 </div>
             </div>
+
             <div class="gallery-item" data-category="Wearables" data-complexity="Basic">
-                <img src="https://images.unsplash.com/photo-1517457373958-b7bdd4587205?q=80&w=800" alt="Hat">
+                <img src="assets/images/gallery-hat.jpg" alt="Hat">
                 <div class="gallery-overlay">
                     <div class="gallery-info">
                         <h4>Party Hat</h4>
                         <span class="badge badge-basic">Basic</span>
-                        <div style="margin-top: 15px;"><span class="btn btn-primary" style="padding: 8px 16px; font-size: 0.8rem;">Request This</span></div>
+                        <div style="margin-top: 15px;">
+                            <a href="contact.html" class="btn btn-primary"
+                                style="padding: 8px 16px; font-size: 0.8rem;">Request This</a>
+                        </div>
                     </div>
                 </div>
             </div>
+
             <div class="gallery-item" data-category="Characters" data-complexity="Masterwork">
-                <img src="https://images.unsplash.com/photo-1504851149312-7a075b496cc7?q=80&w=800" alt="Sculpture">
+                <img src="assets/images/gallery-giraffe.jpg" alt="Sculpture">
                 <div class="gallery-overlay">
                     <div class="gallery-info">
                         <h4>Life-size Giraffe</h4>
                         <span class="badge badge-masterwork">Masterwork</span>
-                        <div style="margin-top: 15px;"><span class="btn btn-primary" style="padding: 8px 16px; font-size: 0.8rem;">Request This</span></div>
+                        <div style="margin-top: 15px;">
+                            <a href="contact.html" class="btn btn-primary"
+                                style="padding: 8px 16px; font-size: 0.8rem;">Request This</a>
+                        </div>
                     </div>
                 </div>
             </div>
+
         </div>
     </section>
 
@@ -270,4 +390,5 @@
     <script src="assets/js/main.js"></script>
     <script src="assets/js/gallery.js"></script>
 </body>
+
 </html>

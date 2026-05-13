@@ -1,27 +1,30 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Register — TwistCraft</title>
-    
+
     <!-- Icons -->
     <script src="https://unpkg.com/@phosphor-icons/web@2.1.1"></script>
-    
+
     <!-- Styles -->
     <link rel="stylesheet" href="assets/css/style.css">
-    
+
     <style>
         body {
-            height: 100vh;
+            min-height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
             background: var(--color-bg);
             padding: var(--s-24);
             margin: 0;
-            overflow: hidden;
+            overflow-y: auto;
+            overflow-x: hidden;
         }
+
         .auth-card {
             width: 100%;
             max-width: 450px;
@@ -31,31 +34,129 @@
             box-shadow: var(--shadow);
             text-align: center;
         }
-        .logo { margin-bottom: var(--s-32); justify-content: center; }
-        
-        .form-group { margin-bottom: var(--s-16); text-align: left; }
-        .form-group label { display: block; margin-bottom: 8px; font-weight: 700; font-size: 0.9rem; }
-        .form-group input { width: 100%; padding: 12px 20px; border-radius: var(--radius); border: 1px solid var(--color-border); background: var(--color-bg); color: var(--color-text); }
-        
-        .divider { display: flex; align-items: center; margin: var(--s-24) 0; color: var(--color-text-muted); font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px; }
-        .divider::before, .divider::after { content: ''; flex: 1; height: 1px; background: var(--color-border); }
-        .divider::before { margin-right: 15px; }
-        .divider::after { margin-left: 15px; }
 
-        .social-btn { display: flex; align-items: center; justify-content: center; gap: 10px; width: 100%; padding: 10px; border-radius: var(--radius); border: 1px solid var(--color-border); background: var(--color-bg); cursor: pointer; font-weight: 600; margin-bottom: 10px; transition: var(--transition); }
-        .social-btn:hover { background: var(--color-surface); }
+        .logo {
+            margin-bottom: var(--s-32);
+            justify-content: center;
+        }
+
+        .form-group {
+            margin-bottom: var(--s-16);
+            text-align: left;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 700;
+            font-size: 0.9rem;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 12px 20px;
+            border-radius: var(--radius);
+            border: 1px solid var(--color-border);
+            background: var(--color-bg);
+            color: var(--color-text);
+        }
+
+        .divider {
+            display: flex;
+            align-items: center;
+            margin: var(--s-24) 0;
+            color: var(--color-text-muted);
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .divider::before,
+        .divider::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: var(--color-border);
+        }
+
+        .divider::before {
+            margin-right: 15px;
+        }
+
+        .divider::after {
+            margin-left: 15px;
+        }
+
+        .social-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            width: 100%;
+            padding: 10px;
+            border-radius: var(--radius);
+            border: 1px solid var(--color-border);
+            background: var(--color-bg);
+            cursor: pointer;
+            font-weight: 600;
+            margin-bottom: 10px;
+            transition: var(--transition);
+            color: var(--color-text);
+        }
+
+        .social-btn:hover {
+            background: var(--color-surface);
+            border-color: var(--color-primary);
+            transform: translateY(-2px);
+        }
+
+        a {
+            transition: var(--transition);
+            text-decoration: none;
+        }
+
+        a:hover {
+            opacity: 0.8;
+            text-decoration: underline;
+        }
+
+        .auth-actions {
+            position: fixed;
+            top: 15px;
+            right: 15px;
+            display: flex;
+            gap: 10px;
+            z-index: 100;
+        }
+
+        @media (max-width: 480px) or (max-height: 700px) {
+            body {
+                align-items: flex-start;
+                padding-top: 80px;
+                padding-bottom: 40px;
+            }
+        }
     </style>
 </head>
+
 <body data-theme="light">
+    <div class="auth-actions">
+        <button class="icon-btn" id="rtl-toggle" title="Toggle RTL">
+            <i class="ph ph-arrows-left-right"></i>
+        </button>
+        <button class="icon-btn" id="theme-toggle" title="Toggle Theme">
+            <i class="ph ph-moon"></i>
+        </button>
+    </div>
 
     <div class="auth-card">
         <a href="index.html" class="logo">
             <span class="logo-icon"></span>
             TwistCraft
         </a>
-        
+
         <h2 style="margin-bottom: var(--s-24);">Join The Fun</h2>
-        
+
         <form>
             <div class="form-group">
                 <label>Full Name</label>
@@ -67,15 +168,20 @@
             </div>
             <div class="form-group">
                 <label>Password</label>
-                <input type="password" placeholder="••••••••" required>
+                <div style="position: relative;">
+                    <input type="password" id="password" placeholder="••••••••" required>
+                    <button type="button" id="toggle-password"
+                        style="position: absolute; right: 15px; top: 50%; transform: translateY(-50%); background: none; border: none; color: var(--color-text-muted); cursor: pointer;">
+                        <i class="ph ph-eye"></i>
+                    </button>
+                </div>
             </div>
-            <div class="form-group">
-                <label>Confirm Password</label>
-                <input type="password" placeholder="••••••••" required>
-            </div>
+
             <div class="form-group" style="display: flex; align-items: center; gap: 10px;">
                 <input type="checkbox" id="terms" style="width: auto;" required>
-                <label for="terms" style="margin-bottom: 0; font-size: 0.8rem;">I accept the Terms & Conditions</label>
+                <label for="terms" style="margin-bottom: 0; font-size: 0.8rem;">I accept the <a href="#"
+                        style="color: var(--color-primary); font-weight: 700;">Terms & Conditions</a> and <a href="#"
+                        style="color: var(--color-primary); font-weight: 700;">privacy policy</a></label>
             </div>
             <button type="submit" class="btn btn-primary" style="width: 100%;">Create Account</button>
         </form>
@@ -83,9 +189,38 @@
         <div class="divider">or</div>
 
         <button class="social-btn"><i class="ph ph-google-logo" style="color: #DB4437;"></i> Google</button>
+        <button class="social-btn"><i class="ph ph-apple-logo"></i> Apple</button>
 
-        <p style="margin-top: var(--s-24); font-size: 0.9rem;">Already have an account? <a href="login.html" style="color: var(--color-primary); font-weight: 700;">Login</a></p>
+        <p style="margin-top: var(--s-24); font-size: 0.9rem;">Already have an account? <a href="login.html"
+                style="color: var(--color-primary); font-weight: 700;">Login</a></p>
     </div>
 
+    <script>
+        // Theme Toggle
+        const themeBtn = document.getElementById('theme-toggle');
+        themeBtn.addEventListener('click', () => {
+            const isDark = document.body.getAttribute('data-theme') === 'dark';
+            document.body.setAttribute('data-theme', isDark ? 'light' : 'dark');
+            themeBtn.querySelector('i').className = isDark ? 'ph ph-moon' : 'ph ph-sun';
+        });
+
+        // RTL Toggle
+        const rtlBtn = document.getElementById('rtl-toggle');
+        rtlBtn.addEventListener('click', () => {
+            const isRtl = document.documentElement.getAttribute('dir') === 'rtl';
+            document.documentElement.setAttribute('dir', isRtl ? 'ltr' : 'rtl');
+        });
+
+        // Password Toggle
+        const passToggle = document.getElementById('toggle-password');
+        const passInput = document.getElementById('password');
+        passToggle.addEventListener('click', () => {
+            const type = passInput.getAttribute('type') === 'password' ? 'text' : 'password';
+            passInput.setAttribute('type', type);
+            passToggle.querySelector('i').classList.toggle('ph-eye');
+            passToggle.querySelector('i').classList.toggle('ph-eye-slash');
+        });
+    </script>
 </body>
+
 </html>
