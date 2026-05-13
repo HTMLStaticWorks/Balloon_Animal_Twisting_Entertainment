@@ -182,6 +182,49 @@
                 grid-template-columns: 1fr;
             }
         }
+
+        /* FAQ Section */
+        .faq-section {
+            padding: var(--s-96) 0;
+            background: var(--color-surface);
+        }
+
+        .faq-grid {
+            max-width: 800px;
+            margin: var(--s-64) auto 0;
+            display: flex;
+            flex-direction: column;
+            gap: var(--s-24);
+        }
+
+        .faq-item {
+            background: var(--color-bg);
+            border-radius: var(--radius);
+            border: 1px solid var(--color-border);
+            padding: var(--s-32);
+            text-align: left;
+            transition: var(--transition);
+        }
+
+        .faq-item:hover {
+            border-color: var(--color-primary);
+            box-shadow: var(--shadow);
+        }
+
+        .faq-item h4 {
+            text-align: left;
+            margin-bottom: 10px;
+            font-size: 1.1rem;
+            color: var(--color-text);
+        }
+
+        .faq-item p {
+            text-align: left;
+            margin: 0;
+            font-size: 0.95rem;
+            color: var(--color-text-muted);
+            max-width: 100%;
+        }
     </style>
 </head>
 
@@ -398,6 +441,35 @@
                         </div>
                     </article>
 
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- FAQ Section -->
+    <section class="faq-section">
+        <div class="container">
+            <span class="section-subtitle">Common Questions</span>
+            <h2 class="section-title">Frequently Asked Questions</h2>
+            <p class="section-desc">Everything you need to know about our balloon services and the art of twisting.</p>
+
+            <div class="faq-grid">
+                <!-- FAQ 1 -->
+                <div class="faq-item">
+                    <h4>How long do balloon sculptures usually last?</h4>
+                    <p>When kept indoors at room temperature, most latex sculptures last 3-5 days. Large scale installations with treated balloons can last up to 2 weeks.</p>
+                </div>
+
+                <!-- FAQ 2 -->
+                <div class="faq-item">
+                    <h4>Do you use eco-friendly balloons?</h4>
+                    <p>Yes, we use 100% biodegradable natural latex balloons. We are committed to sustainable artistry and responsible disposal practices.</p>
+                </div>
+
+                <!-- FAQ 3 -->
+                <div class="faq-item">
+                    <h4>How far in advance should I book my event?</h4>
+                    <p>We recommend booking at least 4-6 weeks in advance, especially for weekend events and large-scale corporate celebrations.</p>
                 </div>
             </div>
         </div>

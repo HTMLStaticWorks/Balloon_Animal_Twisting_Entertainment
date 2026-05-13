@@ -140,4 +140,27 @@ document.addEventListener('DOMContentLoaded', () => {
         const countdownInterval = setInterval(updateCountdown, 1000);
         updateCountdown();
     }
+
+    // Back to Top Button
+    const backToTopBtn = document.createElement('button');
+    backToTopBtn.id = 'back-to-top';
+    backToTopBtn.className = 'icon-btn back-to-top';
+    backToTopBtn.innerHTML = '<i class="ph ph-arrow-up"></i>';
+    backToTopBtn.setAttribute('aria-label', 'Back to Top');
+    document.body.appendChild(backToTopBtn);
+
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 300) {
+            backToTopBtn.classList.add('visible');
+        } else {
+            backToTopBtn.classList.remove('visible');
+        }
+    });
+
+    backToTopBtn.addEventListener('click', () => {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+    });
 });
