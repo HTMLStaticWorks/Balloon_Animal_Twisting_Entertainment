@@ -378,6 +378,10 @@ section {
     text-align: left;
 }
 
+.drawer-link.active {
+    color: var(--color-primary);
+}
+
 .drawer-footer {
     margin-top: auto;
     display: flex;
@@ -530,7 +534,7 @@ section {
     }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 600px) {
     .footer-grid {
         grid-template-columns: 1fr;
         text-align: center;

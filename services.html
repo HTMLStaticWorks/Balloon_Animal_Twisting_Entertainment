@@ -8,6 +8,7 @@
 
     <!-- Icons -->
     <script src="https://unpkg.com/@phosphor-icons/web@2.1.1"></script>
+    <link rel="icon" type="image/svg+xml" href="assets/images/favicon.svg">
 
     <!-- Styles -->
     <link rel="stylesheet" href="assets/css/style.css">
@@ -73,7 +74,7 @@
                 <a href="index.html" class="nav-link">Home</a>
                 <a href="home2.html" class="nav-link">Home 2</a>
                 <a href="gallery.html" class="nav-link">Gallery</a>
-                <a href="services.html" class="nav-link">Services</a>
+                <a href="services.html" class="nav-link active">Services</a>
                 <a href="packages.html" class="nav-link">Packages</a>
                 <a href="workshops.html" class="nav-link">Workshops</a>
                 <a href="blog.html" class="nav-link">Blog</a>
@@ -111,7 +112,7 @@
             <a href="index.html" class="drawer-link">Home</a>
             <a href="home2.html" class="drawer-link">Home 2</a>
             <a href="gallery.html" class="drawer-link">Gallery</a>
-            <a href="services.html" class="drawer-link">Services</a>
+            <a href="services.html" class="drawer-link active">Services</a>
             <a href="packages.html" class="drawer-link">Packages</a>
             <a href="workshops.html" class="drawer-link">Workshops</a>
             <a href="blog.html" class="drawer-link">Blog</a>
@@ -249,9 +250,10 @@
                 <div style="text-align: center; margin-bottom: var(--s-64);">
                     <span class="section-subtitle">Reserve Your Date</span>
                     <h2 class="section-title">Online Booking</h2>
-                    <p class="section-desc">Follow the steps below to secure your event date with TwistCraft. Magical artistry is just a few clicks away.</p>
+                    <p class="section-desc">Follow the steps below to secure your event date with TwistCraft. Magical
+                        artistry is just a few clicks away.</p>
                 </div>
-                
+
                 <div class="booking-container">
                     <div class="progress-bar">
                         <div class="progress-item active" data-step="1">1</div>
@@ -289,7 +291,8 @@
                                 <input type="text" name="location" required placeholder="Street address, City, Zip">
                             </div>
                             <div class="step-btns" style="justify-content: center; gap: var(--s-16);">
-                                <button type="button" class="btn btn-primary next-btn">Next Step <i class="ph ph-arrow-right"></i></button>
+                                <button type="button" class="btn btn-primary next-btn">Next Step <i
+                                        class="ph ph-arrow-right"></i></button>
                             </div>
                         </div>
 
@@ -310,19 +313,24 @@
                                 <label>Add-ons (Optional)</label>
                                 <div style="display: grid; grid-template-columns: 1fr; gap: 10px;">
                                     <label style="display: flex; align-items: center; gap: 10px; font-weight: normal;">
-                                        <input type="checkbox" name="addon_artist" value="Extra Artist"> Extra Artist (+$150)
+                                        <input type="checkbox" name="addon_artist" value="Extra Artist"> Extra Artist
+                                        (+$150)
                                     </label>
                                     <label style="display: flex; align-items: center; gap: 10px; font-weight: normal;">
-                                        <input type="checkbox" name="addon_hats" value="Hat Twisting"> Hat Twisting Bar (+$75)
+                                        <input type="checkbox" name="addon_hats" value="Hat Twisting"> Hat Twisting Bar
+                                        (+$75)
                                     </label>
                                     <label style="display: flex; align-items: center; gap: 10px; font-weight: normal;">
-                                        <input type="checkbox" name="addon_backdrop" value="Photo Backdrop"> Photo Backdrop (+$200)
+                                        <input type="checkbox" name="addon_backdrop" value="Photo Backdrop"> Photo
+                                        Backdrop (+$200)
                                     </label>
                                 </div>
                             </div>
                             <div class="step-btns" style="justify-content: center; gap: var(--s-16);">
-                                <button type="button" class="btn btn-outline prev-btn"><i class="ph ph-arrow-left"></i> Back</button>
-                                <button type="button" class="btn btn-primary next-btn">Next Step <i class="ph ph-arrow-right"></i></button>
+                                <button type="button" class="btn btn-outline prev-btn"><i class="ph ph-arrow-left"></i>
+                                    Back</button>
+                                <button type="button" class="btn btn-primary next-btn">Next Step <i
+                                        class="ph ph-arrow-right"></i></button>
                             </div>
                         </div>
 
@@ -349,15 +357,18 @@
                             </div>
                             <div class="form-group">
                                 <label>Special Requests</label>
-                                <textarea name="requests" rows="3" placeholder="Tell us more about your event theme..."></textarea>
+                                <textarea name="requests" rows="3"
+                                    placeholder="Tell us more about your event theme..."></textarea>
                             </div>
                             <div class="form-group" style="display: flex; align-items: center; gap: 10px;">
                                 <input type="checkbox" id="terms" style="width: auto;" required>
                                 <label for="terms" style="margin-bottom: 0;">I accept the Terms & Conditions *</label>
                             </div>
                             <div class="step-btns" style="justify-content: center; gap: var(--s-16);">
-                                <button type="button" class="btn btn-outline prev-btn"><i class="ph ph-arrow-left"></i> Back</button>
-                                <button type="submit" class="btn btn-primary">Complete Booking <i class="ph ph-check"></i></button>
+                                <button type="button" class="btn btn-outline prev-btn"><i class="ph ph-arrow-left"></i>
+                                    Back</button>
+                                <button type="submit" class="btn btn-primary">Complete Booking <i
+                                        class="ph ph-check"></i></button>
                             </div>
                         </div>
                     </form>
@@ -365,8 +376,10 @@
                     <div id="success-message">
                         <i class="ph ph-check-circle"></i>
                         <h2>Booking Request Sent!</h2>
-                        <p style="margin-bottom: var(--s-32);">Thank you for choosing TwistCraft. Our team will review your request and get back to you within 24 hours.</p>
-                        <div style="background: var(--color-surface); padding: var(--s-24); border-radius: var(--radius); margin-bottom: var(--s-32);">
+                        <p style="margin-bottom: var(--s-32);">Thank you for choosing TwistCraft. Our team will review
+                            your request and get back to you within 24 hours.</p>
+                        <div
+                            style="background: var(--color-surface); padding: var(--s-24); border-radius: var(--radius); margin-bottom: var(--s-32);">
                             <span style="font-weight: 700;">Your Booking Reference:</span>
                             <h3 id="booking-ref" style="color: var(--color-primary); margin-top: 10px;">TC-XXXXXX</h3>
                         </div>
@@ -376,12 +389,68 @@
             </div>
         </div>
     </section>
-    <!-- Footer same as index -->
+    <!-- Footer -->
     <footer class="footer">
         <div class="container footer-grid">
             <div class="footer-col footer-brand">
-                <a href="index.html" class="logo"><span class="logo-icon"></span>TwistCraft</a>
-                <p>Premium balloon artistry and entertainment.</p>
+                <a href="index.html" class="logo">
+                    <span class="logo-icon"></span>
+                    TwistCraft
+                </a>
+                <p>Premium balloon artistry and entertainment for luxury events and unforgettable celebrations.</p>
+                <div class="footer-socials">
+                    <a href="#" class="icon-btn"><i class="ph ph-instagram-logo"></i></a>
+                    <a href="#" class="icon-btn"><i class="ph ph-facebook-logo"></i></a>
+                    <a href="#" class="icon-btn"><i class="ph ph-tiktok-logo"></i></a>
+                    <a href="#" class="icon-btn"><i class="ph ph-youtube-logo"></i></a>
+                </div>
+            </div>
+
+            <div class="footer-col">
+                <h4>Quick Links</h4>
+                <div class="footer-links">
+                    <a href="index.html">Home</a>
+                    <a href="gallery.html">Gallery</a>
+                    <a href="services.html">Services</a>
+                    <a href="packages.html">Packages</a>
+                    <a href="workshops.html">Workshops</a>
+                    <a href="booking.html">Book Now</a>
+                </div>
+            </div>
+
+            <div class="footer-col">
+                <h4>Contact Us</h4>
+                <div class="footer-contact-item">
+                    <i class="ph ph-map-pin"></i>
+                    <span>123 Twister Lane, Balloon City, BC 45678</span>
+                </div>
+                <div class="footer-contact-item">
+                    <i class="ph ph-phone"></i>
+                    <span>+1 (555) TWIST-IT</span>
+                </div>
+                <div class="footer-contact-item">
+                    <i class="ph ph-envelope"></i>
+                    <span>hello@twistcraft.com</span>
+                </div>
+                <div class="footer-contact-item">
+                    <i class="ph ph-clock"></i>
+                    <span>Mon - Sun: 9AM - 8PM</span>
+                </div>
+            </div>
+
+            <div class="footer-col footer-newsletter">
+                <h4>Newsletter</h4>
+                <p>Get twisting tips and event inspiration delivered to your inbox.</p>
+                <form class="newsletter-form">
+                    <input type="email" placeholder="Your Email Address" required>
+                    <button type="submit" class="btn btn-primary">Subscribe</button>
+                </form>
+                <!-- Mailchimp Embed Placeholder -->
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div class="container">
+                <p>&copy; 2026 TwistCraft Entertainment. All Rights Reserved. Crafted with passion.</p>
             </div>
         </div>
     </footer>
