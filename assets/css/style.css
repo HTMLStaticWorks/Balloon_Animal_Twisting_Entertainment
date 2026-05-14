@@ -454,6 +454,16 @@ section {
     gap: 12px;
     margin-bottom: var(--s-12);
     font-size: 0.95rem;
+    align-items: flex-start;
+}
+
+.footer-contact-item i {
+    color: var(--color-primary);
+    font-size: 1.2rem;
+    width: 24px;
+    display: flex;
+    justify-content: center;
+    flex-shrink: 0;
 }
 
 .footer-newsletter p {
@@ -546,12 +556,24 @@ section {
         text-align: center;
     }
 
+    .footer-brand .logo,
     .footer-socials {
         justify-content: center;
     }
 
+    .footer-links {
+        align-items: center;
+    }
+
     .footer-contact-item {
-        justify-content: center;
+        display: grid;
+        grid-template-columns: 24px 1fr;
+        gap: 12px;
+        text-align: left;
+        width: 100%;
+        max-width: 280px;
+        margin: 0 auto var(--s-12);
+        align-items: start;
     }
 
     .newsletter-form {
